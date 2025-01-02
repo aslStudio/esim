@@ -10,9 +10,10 @@ import { useTelegram } from "@/shared/lib/hooks/useTelegram"
 import { RouterView } from './router'
 
 function App() {
-	const { setHeaderColor, openFullScreen } = useTelegram()
+	const { expand, setHeaderColor, openFullScreen } = useTelegram()
 
 	useEffect(() => {
+		expand()
 		openFullScreen()
 		setHeaderColor('bg_color')
 	})
