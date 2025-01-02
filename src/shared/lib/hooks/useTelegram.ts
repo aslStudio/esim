@@ -85,8 +85,12 @@ export const useTelegram = () => {
     }
 
     function openFullScreen() {
-        tg.Telegram?.WebApp?.requestFullscreen()
-        tg.Telegram?.WebApp?.lockOrientation()
+        try {
+            tg.Telegram?.WebApp?.requestFullscreen()
+            tg.Telegram?.WebApp?.lockOrientation()
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     const isMobileDevice = useMemo(() => {
