@@ -1,5 +1,4 @@
 import {TimeStamp} from "@/shared/lib/types.ts";
-import {RepeatType} from "@/shared/api/enum.ts";
 
 const monthNames: Record<string, string> = {
     0: 'Январь',
@@ -86,25 +85,6 @@ export function getDayShortcut(ts: TimeStamp) {
 
 export function getDayShortcutByIndex(key: number) {
     return dayNameMap[key]
-}
-
-export function getRepeatTypeText(
-    type: RepeatType,
-    value: number
-) {
-    if (type === RepeatType.WEEK) {
-        if (value === 1) {
-            return 'неделя'
-        }
-
-        return 'недели'
-    }
-
-    if (value === 1) {
-        return 'день'
-    }
-
-    return 'дня'
 }
 
 export function getIsToday(ts: TimeStamp): boolean {
