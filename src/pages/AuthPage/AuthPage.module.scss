@@ -1,0 +1,41 @@
+.root {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100vw;
+    height: 100vh;
+
+    padding: var(--safe-area-inset-top) 16px var(--safe-area-inset-bottom);
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 32px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+
+    margin-top: 32px;
+}
+
+.description {
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--color-base);
+    text-align: center;
+
+    margin-top: 24px;
+}
