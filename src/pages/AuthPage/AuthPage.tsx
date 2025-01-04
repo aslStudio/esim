@@ -1,6 +1,5 @@
 import {useEffect} from "react"
 import {reflect} from "@effector/reflect"
-import {useNavigate} from "react-router-dom"
 
 import {loginModel} from "@/features/auth/model"
 
@@ -8,12 +7,15 @@ import {LottieAnimation} from "@/shared/ui/LottieAnimation"
 import {useLanguageProvider} from "@/shared/lib/providers"
 import {Button} from "@/shared/ui/Button"
 import {RootPaths} from "@/shared/lib"
+import {useTelegram} from "@/shared/lib/hooks/useTelegram.ts"
+import {useProjectNavigate} from "@/shared/lib/hooks"
 
 import styles from './AuthPage.module.scss'
 
 export const AuthPage = () => {
-    const navigate = useNavigate()
+    const { navigate } = useProjectNavigate()
 
+    const { BackButton } = useTelegram()
     const { content } = useLanguageProvider()
 
     const {
@@ -26,7 +28,8 @@ export const AuthPage = () => {
         loginModel.onSuccess.set(() => {
             navigate(RootPaths.MAIN)
         })
-    }, [navigate])
+        BackButton?.hide()
+    }, [navigate, BackButton])
 
     return (
         <div className={styles.root}>

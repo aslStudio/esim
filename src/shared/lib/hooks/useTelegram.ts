@@ -24,6 +24,12 @@ export type TelegramWindow = {
             HapticFeedback: {
                 impactOccurred: (v: 'light' | 'medium' | 'heavy' | 'rigid' | 'soft') => void
             },
+            BackButton: {
+                show: () => void
+                hide: () => void
+                onClick: (cb: () => void) => void
+            },
+            disableVerticalSwipes: () => void
             platform: string
         },
         authData?: {
@@ -102,7 +108,9 @@ export const useTelegram = () => {
 
     return {
         isMobileDevice,
+        BackButton: tg.Telegram?.WebApp?.BackButton,
 
+        disableVerticalSwipes: tg.Telegram?.WebApp?.disableVerticalSwipes,
         expand,
         haptic,
         sendInviteLink,

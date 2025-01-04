@@ -1,11 +1,23 @@
 import {LanguageSelect, ViewerInfo, ViewerOrders} from "@/widgets/viewer"
 
+import {useLanguageProvider} from "@/shared/lib/providers"
+import {useTelegram} from "@/shared/lib/hooks/useTelegram.ts"
+import {useProjectNavigate} from "@/shared/lib/hooks"
+
 import styles from './ProfilePage.module.scss'
-import {useLanguageProvider} from "@/shared/lib/providers";
+import {useEffect} from "react";
 
 export const ProfilePage = () => {
+    const { goBack } = useProjectNavigate()
+
+    const { BackButton } = useTelegram()
     const { content } = useLanguageProvider()
     const { languageTitle } = content.pages.profile
+
+    useEffect(() => {
+        BackButton?.show()
+        BackButton?.onClick(goBack)
+    }, [BackButton, goBack])
 
     return (
         <div className={styles.root}>
