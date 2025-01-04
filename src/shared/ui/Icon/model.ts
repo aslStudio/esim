@@ -4,5 +4,6 @@ export const names = iconNames
 export const views = [
     'base',
     'secondary',
-    'button'
+    'button',
+    'section',
 ] as const

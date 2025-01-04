@@ -2,8 +2,13 @@ import {viewerModel} from "@/entities/viewer/model";
 import {TransitionFade} from "@/shared/ui/TransitionFade";
 import {ViewerCell, ViewerCellSkeleton} from "@/entities/viewer/ui/ViewerCell";
 import {reflect} from "@effector/reflect";
+import React from "react";
 
-export const ViewerInfo = () => {
+export const ViewerInfo: React.FC<{
+    isInteractive: boolean;
+}> = ({
+    isInteractive
+}) => {
     const { isLoading } = viewerModel.useFetchGate()
 
     return (
@@ -12,7 +17,9 @@ export const ViewerInfo = () => {
                 <ViewerCellSkeleton />
             )}
             {!isLoading && (
-                <ViewerCellReflect />
+                <ViewerCellReflect
+                    isInterActive={isInteractive}
+                />
             )}
         </TransitionFade>
     )

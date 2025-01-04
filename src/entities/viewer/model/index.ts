@@ -1,16 +1,17 @@
 import {createStore, sample} from "effector"
 
 import {viewerApi} from "@/shared/api/viewer"
+import {createFetch} from "@/shared/lib/effector"
 
 import { Viewer } from './types.ts'
-import {createFetch} from "@/shared/lib/effector";
 
-const [fetchFx, useFetchGate, Gate] = createFetch(viewerApi.getViewer)
+const [fetchFx, useFetchGate, Gate, $isPending] = createFetch(viewerApi.getViewer)
 
 const $data = createStore<Viewer>({
     avatar: '',
     name: '',
     username: '',
+    orders: [],
 })
 
 sample({
@@ -27,6 +28,7 @@ sample({
 
 export const viewerModel = {
     $data,
+    $isPending,
     useFetchGate,
 }
 

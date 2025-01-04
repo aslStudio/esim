@@ -9,19 +9,39 @@
     font-style: normal;
   }
 
-.icon-chevron_right:before {
+.icon-check:before {
       content: "\e001";
       font-family: 'custom-icon-font';
     }
-.icon-eye-closed:before {
+.icon-chevron_bottom:before {
       content: "\e002";
       font-family: 'custom-icon-font';
     }
-.icon-eye-slash:before {
+.icon-chevron_right:before {
       content: "\e003";
       font-family: 'custom-icon-font';
     }
-.icon-eye:before {
+.icon-clock:before {
       content: "\e004";
+      font-family: 'custom-icon-font';
+    }
+.icon-eye-closed:before {
+      content: "\e005";
+      font-family: 'custom-icon-font';
+    }
+.icon-eye-slash:before {
+      content: "\e006";
+      font-family: 'custom-icon-font';
+    }
+.icon-eye:before {
+      content: "\e007";
+      font-family: 'custom-icon-font';
+    }
+.icon-gb:before {
+      content: "\e008";
+      font-family: 'custom-icon-font';
+    }
+.icon-ru:before {
+      content: "\e009";
       font-family: 'custom-icon-font';
     }

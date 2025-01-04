@@ -1,0 +1,51 @@
+.root {
+    border-radius: 12px;
+    background-color: var(--background-section);
+}
+
+.size {
+    &_s {
+        padding: 14px 16px;
+    }
+
+    &_m {
+        padding: 20px;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.content {
+    &_s {
+        padding-top: 16px;
+    }
+
+    &_m {
+        padding-top: 12px;
+    }
+}
+
+.icon {
+    transform: rotate(90deg);
+
+    transition: 0.3s ease;
+    transition-property: transform;
+
+    &.is-active {
+        transform: rotate(-90deg);
+    }
+}

@@ -7,6 +7,12 @@ export const en = {
                 'Pay directly in telegram'
             ],
             button: 'Start'
+        },
+        main: {
+            button: 'Order eSIM',
+        },
+        profile: {
+            languageTitle: 'Language'
         }
     }
 }

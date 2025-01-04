@@ -1,0 +1,34 @@
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-secondary);
+
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p:nth-child(2) {
+        text-align: right;
+    }
+}
+
+.row-header {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+}
+
+.row-description {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--color-secondary);
+
+    margin-top: -4px;
+}

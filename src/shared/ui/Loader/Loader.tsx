@@ -14,6 +14,8 @@ export type LoaderProps = PropsDefault<{
 
 const mapColors: Record<NonNullable<LoaderProps['color']>, string> = {
     white: '#fff',
+    black: '#000',
+    brand: '#007AFF'
 }
 
 const SVG_ATTRS = {

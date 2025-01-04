@@ -7,6 +7,12 @@ export const ru = {
                 'Оплачивайте напрямую в Telegram'
             ],
             button: 'Начать'
+        },
+        main: {
+            button: 'Заказать eSIM',
+        },
+        profile: {
+            languageTitle: 'Язык'
         }
     }
 }

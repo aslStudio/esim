@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 
 import {AuthPage} from "@/pages/AuthPage"
 import {MainPage} from "@/pages/MainPage"
+import {ProfilePage} from "@/pages/ProfilePage"
 
 import { RootPaths } from "@/shared/lib"
 import { tokenModel } from "@/shared/model"
@@ -49,6 +50,14 @@ export const RouterView = () => {
                     element={(
                         <PrivateRoute>
                             <MainPage />
+                        </PrivateRoute>
+                    )}
+                />
+                <Route
+                    path={RootPaths.PROFILE}
+                    element={(
+                        <PrivateRoute>
+                            <ProfilePage />
                         </PrivateRoute>
                     )}
                 />
