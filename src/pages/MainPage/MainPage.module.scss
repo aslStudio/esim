@@ -10,8 +10,8 @@
     width: 100vw;
     height: 100vh;
 
-    padding-top: calc(var(--safe-area-inset-top, 0px) + 40px);
-    padding-bottom: calc(var(--safe-area-inset-bottom, 0px) + 32px);
+    padding-top: calc(var(--safe-area-inset-top, 0px) + 50px);
+    padding-bottom: calc(var(--safe-area-inset-bottom, 0px) + 97px);
     padding-left: 16px;
     padding-right: 16px;
 
@@ -21,3 +21,9 @@
     box-sizing: border-box;
 }
 
+.button {
+    position: fixed;
+    left: 16px;
+    bottom: calc(var(--safe-area-inset-bottom, 0px) + 32px);
+    width: calc(100% - 32px);
+}
