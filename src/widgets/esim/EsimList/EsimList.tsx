@@ -25,7 +25,7 @@ export const EsimList = () => {
                     }}
                 >
                     <Icon
-                        name={isShowHidden ? 'eye-slash' : 'eye'}
+                        name={isShowHidden ? 'eye-closed' : 'eye'}
                         view={'secondary'}
                         size={24}
                     />

@@ -13,11 +13,15 @@
       content: "\e001";
       font-family: 'custom-icon-font';
     }
-.icon-eye-slash:before {
+.icon-eye-closed:before {
       content: "\e002";
       font-family: 'custom-icon-font';
     }
-.icon-eye:before {
+.icon-eye-slash:before {
       content: "\e003";
+      font-family: 'custom-icon-font';
+    }
+.icon-eye:before {
+      content: "\e004";
       font-family: 'custom-icon-font';
     }
