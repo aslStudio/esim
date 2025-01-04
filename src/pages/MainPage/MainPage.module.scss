@@ -1,0 +1,23 @@
+.root {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    width: 100vw;
+    height: 100vh;
+
+    padding-top: calc(var(--safe-area-inset-top, 0px) + 32px);
+    padding-bottom: calc(var(--safe-area-inset-bottom, 0px) + 32px);
+    padding-left: 16px;
+    padding-right: 16px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+

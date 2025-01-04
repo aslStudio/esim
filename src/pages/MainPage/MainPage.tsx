@@ -1,5 +1,11 @@
+import {ViewerInfo} from "@/widgets/viewer"
+import {EsimList} from "@/widgets/esim"
+
+import styles from './MainPage.module.scss'
+
 export const MainPage = () => (
-    <div>
-        <h1>Main Page</h1>
+    <div className={styles.root}>
+        <ViewerInfo />
+        <EsimList />
     </div>
 )

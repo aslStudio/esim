@@ -1,0 +1,38 @@
+.root {
+    position: relative;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: none;
+    border: none;
+    outline: none;
+
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-secondary);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

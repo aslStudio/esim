@@ -155,11 +155,31 @@ export function getTimeRange(startTime: TimeStamp, endTime: TimeStamp): string {
     return `${startFormatted} - ${endFormatted}`
 }
 
-export function formatTime(timestamp: TimeStamp): string {
+export function formatTime(
+    timestamp: TimeStamp,
+    type: 'hh:mm' | 'hh:mm:ss' = 'hh:mm'
+): string {
     const date = new Date(timestamp)
     const hours = date.getHours().toString().padStart(2, '0')
     const minutes = date.getMinutes().toString().padStart(2, '0')
-    return `${hours}:${minutes}`
+    const seconds = date.getSeconds().toString().padStart(2, '0')
+
+    if (type === 'hh:mm') {
+        return `${hours}:${minutes}`
+    }
+
+    return `${hours}:${minutes}:${seconds}`
+}
+
+export function formatDate(
+    timestamp: TimeStamp,
+) {
+    const date = new Date(timestamp)
+    const days = date.getDate().toString().padStart(2, '0')
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const year = date.getFullYear()
+
+    return `${days}.${month}.${year}`
 }
 
 export function tsToWordOrFormatted(ts: TimeStamp): string {
