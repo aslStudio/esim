@@ -1,0 +1,30 @@
+.root {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100vh;
+
+    padding-top: calc(var(--safe-area-inset-top, 0px) + 50px);
+    padding-bottom: calc(var(--safe-area-inset-bottom, 0px) + 97px);
+    padding-left: 16px;
+    padding-right: 16px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 32px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+
+    margin-bottom: 32px;
+}

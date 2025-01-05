@@ -37,11 +37,15 @@
 }
 
 .is-loading {
+    pointer-events: none;
+
     .content {
         opacity: 0;
     }
 }
 
 .is-disabled {
+    pointer-events: none;
+
     opacity: 0.6;
 }

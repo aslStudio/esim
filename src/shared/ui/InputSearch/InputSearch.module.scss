@@ -1,0 +1,26 @@
+.root {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    border-radius: 12px;
+    padding: 13px 16px;
+    box-sizing: border-box;
+    background-color: var(--background-section);
+}
+
+.field {
+    outline: none;
+    border: none;
+    background: none;
+
+    color: var(--color-base);
+
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 400;
+
+    &::placeholder {
+        color: var(--color-secondary);
+    }
+}

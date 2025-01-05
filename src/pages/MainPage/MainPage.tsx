@@ -6,12 +6,15 @@ import {EsimList} from "@/widgets/esim"
 import {Button} from "@/shared/ui/Button"
 import {useLanguageProvider} from "@/shared/lib/providers"
 import {useTelegram} from "@/shared/lib/hooks/useTelegram.ts"
+import {useProjectNavigate} from "@/shared/lib/hooks"
 
 import styles from './MainPage.module.scss'
+import {CreatePaths, RootPaths} from "@/shared/lib";
 
 export const MainPage = () => {
     const { BackButton } = useTelegram()
     const { content } = useLanguageProvider()
+    const { navigate } = useProjectNavigate()
 
     const { button } = content.pages.main
 
@@ -27,7 +30,12 @@ export const MainPage = () => {
             <EsimList />
             <Button
                 className={styles.button}
-                onClick={() => {}}
+                onClick={() => {
+                    navigate(
+                        RootPaths.CREATE,
+                        CreatePaths.REGION
+                    )
+                }}
             >
                 {button}
             </Button>

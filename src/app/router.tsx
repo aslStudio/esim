@@ -1,11 +1,12 @@
 import React, { useEffect } from "react"
 import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 
-import {AuthPage} from "@/pages/AuthPage"
-import {MainPage} from "@/pages/MainPage"
-import {ProfilePage} from "@/pages/ProfilePage"
+import { AuthPage } from "@/pages/AuthPage"
+import { MainPage } from "@/pages/MainPage"
+import { ProfilePage } from "@/pages/ProfilePage"
+import {CreateEsimPage, CreateEsimRegionPage} from "@/pages/CreateEsimPage"
 
-import { RootPaths } from "@/shared/lib"
+import {CreatePaths, RootPaths} from "@/shared/lib"
 import { tokenModel } from "@/shared/model"
 import { useRouteTransitionContext } from "@/shared/lib/providers/RouteTransitionProvider"
 
@@ -61,6 +62,19 @@ export const RouterView = () => {
                         </PrivateRoute>
                     )}
                 />
+                <Route
+                    path={RootPaths.CREATE}
+                    element={(
+                        <PrivateRoute>
+                            <CreateEsimPage />
+                        </PrivateRoute>
+                    )}
+                >
+                    <Route
+                        path={CreatePaths.REGION}
+                        element={<CreateEsimRegionPage />}
+                    />
+                </Route>
                 <Route
                     path={RootPaths.ANOTHER}
                     element={<AnotherRoute />}
