@@ -5,7 +5,7 @@ import {esimApi} from "@/shared/api/esim"
 
 import { ESIMItem } from './types.ts'
 
-const [fetchFx, useFetchGate, Gate] = createFetch(esimApi.getList)
+const [fetchFx, useFetchGate, Gate, $isPending] = createFetch(esimApi.getList)
 
 const $data = createStore<ESIMItem[]>([])
 
@@ -27,6 +27,8 @@ sample({
 export const esimListModel = {
     $showedList,
     $hiddenList,
+    $isPending,
+
     useFetchGate,
 }
 
