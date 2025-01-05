@@ -22,6 +22,10 @@ export const ru = {
             region: {
                 title: 'Выберете страну',
                 next: 'Следующий шаг'
+            },
+            tariff: {
+                title: 'Выберете тарифф',
+                next: 'Следующий шаг'
             }
         }
     },

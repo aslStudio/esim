@@ -1,0 +1,23 @@
+.root {
+    padding-top: 20px;
+}
+
+.button {
+    position: fixed;
+    left: 16px;
+    bottom: calc(var(--safe-area-inset-bottom, 0px) + 32px);
+    width: calc(100% - 32px);
+}
+
+.title {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+
+    margin-bottom: 16px;
+}
+
+.list {
+    margin-top: 16px;
+}

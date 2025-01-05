@@ -12,11 +12,12 @@ import {useLanguageProvider} from "@/shared/lib/providers"
 import {TransitionFade} from "@/shared/ui/TransitionFade"
 import {Button} from "@/shared/ui/Button"
 import { useProjectNavigate, useTelegram } from "@/shared/lib/hooks"
+import {CreatePaths, RootPaths} from "@/shared/lib"
 
 import styles from './CreateEsimRegionPage.module.scss'
 
 export const CreateEsimRegionPage = () => {
-    const { goBack } = useProjectNavigate()
+    const { goBack, navigate } = useProjectNavigate()
 
     const { isPending } = regionListModel.useFetchRegion()
 
@@ -44,13 +45,23 @@ export const CreateEsimRegionPage = () => {
                 {!isPending && (
                     <ListReflect
                         key={'Content'}
+                        onSelect={v => {
+                            createEsimModel.regionUpdated(v)
+                            navigate(
+                                RootPaths.CREATE,
+                                CreatePaths.TARIFF
+                            )
+                        }}
                     />
                 )}
             </TransitionFade>
             <ButtonReflect
                 className={styles.button}
                 onClick={() => {
-                    console.log('button')
+                    navigate(
+                        RootPaths.CREATE,
+                        CreatePaths.TARIFF
+                    )
                 }}
             >
                 {next}
@@ -63,7 +74,6 @@ const ListReflect = reflect({
     view: RegionCellList,
     bind: {
         list: regionListModel.$list,
-        onSelect: createEsimModel.regionUpdated,
     }
 })
 

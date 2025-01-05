@@ -11,7 +11,7 @@ import styles from './RegionCell.module.scss'
 export type RegionCellProps = PropsDefault<{
     cell: Region
     isInteractive: boolean
-    onClick: (v: Region) => void
+    onClick?: (v: Region) => void
 }>
 
 export const RegionCell: React.FC<RegionCellProps> = ({
@@ -28,7 +28,7 @@ export const RegionCell: React.FC<RegionCellProps> = ({
             )}
             onClick={() => {
                 if (isInteractive) {
-                    onClick(cell)
+                    onClick?.(cell)
                 }
             }}
         >

@@ -22,6 +22,10 @@ export const en = {
             region: {
                 title: 'Select Country',
                 next: 'Next step'
+            },
+            tariff: {
+                title: 'Select Tariff',
+                next: 'Next step'
             }
         }
     },
