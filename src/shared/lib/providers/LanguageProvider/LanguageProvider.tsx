@@ -13,7 +13,7 @@ type Context = {
 
 const languageContext = createContext<Context>({
     lang: 'en',
-    content: en,
+    content: en as unknown as Content,
     setLang: () => {}
 })
 
@@ -39,7 +39,7 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({
             value={{
                 lang,
                 setLang,
-                content,
+                content: content as unknown as Content,
             }}
         >
             {children}

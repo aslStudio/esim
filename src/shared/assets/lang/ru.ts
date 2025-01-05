@@ -94,6 +94,13 @@ export const ru = {
                     title: 'Шаг 4: Готово',
                     description: 'Почти готово. Осталось только оплатить тариф.'
                 }
+            },
+            EsimList: {
+                title: 'Ваши eSIM',
+                button: {
+                    hide: 'скрыть заархивированные',
+                    show: 'показать заархивированные'
+                }
             }
         },
         region: {
@@ -104,6 +111,22 @@ export const ru = {
                     [RegionType.GLOBAL]: 'Глобал',
                 },
                 placeholder: 'Введите название страны'
+            }
+        },
+        viewer: {
+            ViewerOrders: {
+                title: 'История заказов'
+            }
+        }
+    },
+    entities: {
+        esim: {
+            EsimCard: {
+                days: 'Дней',
+                purchase: 'Дата списания',
+                iccid: 'ICCID',
+                daysLeft: 'Осталось дней',
+                dataLeft: 'Данных осталось'
             }
         }
     }

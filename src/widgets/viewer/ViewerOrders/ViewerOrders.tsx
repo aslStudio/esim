@@ -9,6 +9,7 @@ import {PaymentType} from "@/shared/api/enum.ts"
 import {PropsDefault} from "@/shared/lib"
 
 import styles from './ViewerOrders.module.scss'
+import {useLanguageProvider} from "@/shared/lib/providers";
 
 const paymentTypeMap: Record<PaymentType, string> = {
     [PaymentType.MAJOR]: '$MAJOR',
@@ -26,11 +27,14 @@ export const ViewerOrders: React.FC<PropsDefault> = ({
         viewerModel.$isPending
     ])
 
+    const { content } = useLanguageProvider()
+    const { title } = content.widgets.viewer.ViewerOrders
+
     return (
         <CardCollapse
             className={className}
             icon={'clock'}
-            title={'Order history'}
+            title={title}
             isLoading={isPending}
             size={'s'}
         >

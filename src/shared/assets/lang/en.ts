@@ -94,6 +94,13 @@ export const en = {
                     title: 'Step 4: Done',
                     description: 'Almost ready. just need to pay the tariff'
                 }
+            },
+            EsimList: {
+                title: 'Yours eSIMS',
+                button: {
+                    hide: 'hide archive',
+                    show: 'show archive'
+                }
             }
         },
         region: {
@@ -104,6 +111,22 @@ export const en = {
                     [RegionType.GLOBAL]: 'Global',
                 },
                 placeholder: 'Enter country name'
+            }
+        },
+        viewer: {
+            ViewerOrders: {
+                title: 'Order history'
+            }
+        }
+    },
+    entities: {
+        esim: {
+            EsimCard: {
+                days: 'Days',
+                purchase: 'Date of purchase',
+                iccid: 'ICCID',
+                daysLeft: 'Days left',
+                dataLeft: 'Data left'
             }
         }
     }
