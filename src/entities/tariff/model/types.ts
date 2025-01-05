@@ -3,5 +3,6 @@ export type Tariff = {
     size: number
     days: number
     stars: number
+    major: number
     dollars: number
 }

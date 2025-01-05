@@ -1,30 +1,36 @@
 import {useEffect} from "react"
+import {useUnit} from "effector-react"
 import {reflect} from "@effector/reflect"
 
 import {createEsimModel} from "@/features/create/model"
 
+import {tariffListModel} from "@/entities/tariff/model"
+import {TariffCardList, TariffCardListSkeleton} from "@/entities/tariff/ui"
+import {availableCountriesModel} from "@/entities/region/model"
+
 import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
 import {useLanguageProvider} from "@/shared/lib/providers"
 import {Button} from "@/shared/ui/Button"
+import {TransitionFade} from "@/shared/ui/TransitionFade"
+import {CardCollapse} from "@/shared/ui/CardCollapse"
 
 import styles from './CreateEsimTariffPage.module.scss'
-import {TransitionFade} from "@/shared/ui/TransitionFade";
-import {useUnit} from "effector-react";
-import {tariffListModel} from "@/entities/tariff/model";
-import {TariffCardList, TariffCardListSkeleton} from "@/entities/tariff/ui";
+import {CreatePaths, RootPaths} from "@/shared/lib";
 
 export const CreateEsimTariffPage = () => {
-    const { goBack } = useProjectNavigate()
+    const { goBack, navigate } = useProjectNavigate()
 
     const [
-        isPending
+        isPending,
+        count,
     ] = useUnit([
         tariffListModel.$isPending,
+        availableCountriesModel.$count,
     ])
 
     const { BackButton } = useTelegram()
     const { content } = useLanguageProvider()
-    const { title, next } = content.pages.create.tariff
+    const { title, next, availableTitle } = content.pages.create.tariff
 
     useEffect(() => {
         BackButton?.show()
@@ -34,22 +40,31 @@ export const CreateEsimTariffPage = () => {
     return (
         <div className={styles.root}>
             <h1 className={styles.title}>{title}</h1>
-            <TransitionFade>
+            <TransitionFade className={styles.list}>
                 {isPending && (
                     <TariffCardListSkeleton
                         key={'Skeleton'}
                     />
                 )}
                 {!isPending && (
-                    <TariffListReflect
-                        key={'Content'}
-                    />
+                    <>
+                        <TariffListReflect
+                            key={'Content'}
+                        />
+                        <AvailableCountriesReflect
+                            title={`${availableTitle}: ${count}`}
+                            size={'m'}
+                        />
+                    </>
                 )}
             </TransitionFade>
             <ButtonReflect
                 className={styles.button}
                 onClick={() => {
-                    console.log('button')
+                    navigate(
+                        RootPaths.CREATE,
+                        CreatePaths.PAYMENT,
+                    )
                 }}
             >
                 {next}
@@ -64,6 +79,14 @@ const TariffListReflect = reflect({
         list: tariffListModel.$list,
         value: createEsimModel.$data.map(data => data.tariff),
         setValue: createEsimModel.tariffUpdated,
+    }
+})
+
+const AvailableCountriesReflect = reflect({
+    view: CardCollapse,
+    bind: {
+        isLoading: availableCountriesModel.$isPending,
+        children: availableCountriesModel.$countriesString,
     }
 })
 

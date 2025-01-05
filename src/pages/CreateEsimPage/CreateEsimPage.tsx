@@ -1,7 +1,7 @@
 import {Outlet} from "react-router-dom"
 import {useUnit} from "effector-react"
 
-import {CreateEsimStepper, useCreateEsimStep} from "@/widgets/esim"
+import {CreateEsimStepper, EsimTariffInfo, useCreateEsimStep} from "@/widgets/esim"
 
 import {createEsimModel} from "@/features/create/model"
 
@@ -22,10 +22,16 @@ export const CreateEsimPage = () => {
         <div className={styles.root}>
             <h1 className={styles.title}>{title}</h1>
             <CreateEsimStepper />
-            {activeStepNumber > 1 && data.region && (
+            {activeStepNumber === 2 && data.region && (
                 <RegionCell
+                    className={styles.cell}
                     cell={data.region}
                     isInteractive={false}
+                />
+            )}
+            {activeStepNumber === 3 && (
+                <EsimTariffInfo
+                    className={styles.cell}
                 />
             )}
             <Outlet />

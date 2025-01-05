@@ -4,7 +4,12 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 import { AuthPage } from "@/pages/AuthPage"
 import { MainPage } from "@/pages/MainPage"
 import { ProfilePage } from "@/pages/ProfilePage"
-import {CreateEsimPage, CreateEsimRegionPage, CreateEsimTariffPage} from "@/pages/CreateEsimPage"
+import {
+    CreateEsimPage,
+    CreateEsimRegionPage,
+    CreateEsimTariffPage,
+    CreateEsimPaymentMethodPage,
+} from "@/pages/CreateEsimPage"
 
 import {CreatePaths, RootPaths} from "@/shared/lib"
 import { tokenModel } from "@/shared/model"
@@ -77,6 +82,10 @@ export const RouterView = () => {
                     <Route
                         path={CreatePaths.TARIFF}
                         element={<CreateEsimTariffPage />}
+                    />
+                    <Route
+                        path={CreatePaths.PAYMENT}
+                        element={<CreateEsimPaymentMethodPage />}
                     />
                 </Route>
                 <Route

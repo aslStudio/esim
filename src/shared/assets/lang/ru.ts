@@ -25,7 +25,16 @@ export const ru = {
             },
             tariff: {
                 title: 'Выберете тарифф',
+                availableTitle: 'Доступные страны',
                 next: 'Следующий шаг'
+            },
+            paymentMethod: {
+                title: 'Выберете метод оплаты',
+                alert: [
+                    'Пожалуйста, перепроверьте',
+                    'выбранный тарифф перед оплатой'
+                ],
+                button: 'Next step'
             }
         }
     },

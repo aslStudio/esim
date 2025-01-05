@@ -25,7 +25,16 @@ export const en = {
             },
             tariff: {
                 title: 'Select Tariff',
+                availableTitle: 'Available countries',
                 next: 'Next step'
+            },
+            paymentMethod: {
+                title: 'Select payment method',
+                alert: [
+                    'Please double check',
+                    'your tariff details before paying'
+                ],
+                button: 'Next step'
             }
         }
     },

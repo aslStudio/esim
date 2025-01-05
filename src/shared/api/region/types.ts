@@ -12,7 +12,16 @@ export type GetRegionResponse = {
     name: string
 }[]
 
+export type GetAvailableCountriesParams = {
+    region: number | string
+}
+
+export type GetAvailableCountriesResponse =
+    string[]
+
 export type RegionApi = {
     getList: (p: GetRegionParams) =>
         Promise<ResponseDefault<GetRegionResponse>>
+    getAvailableCountries: (p: GetAvailableCountriesParams) =>
+        Promise<ResponseDefault<GetAvailableCountriesResponse>>
 }

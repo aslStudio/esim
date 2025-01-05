@@ -15,5 +15,13 @@ export const regionApi: RegionApi = {
                 name: `NAME ${getRandomInt(1, 10_000)}`
             }))
         }
+    },
+    getAvailableCountries: async () => {
+        await delay()
+
+        return {
+            error: false,
+            payload: Array(25).fill('country')
+        }
     }
 }

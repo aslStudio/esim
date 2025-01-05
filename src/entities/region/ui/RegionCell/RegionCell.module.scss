@@ -1,11 +1,13 @@
 .root {
     display: flex;
     align-items: center;
+    background-color: var(--background-section);
 
     padding-top: 6px;
     padding-bottom: 6px;
     padding-left: 9px;
     padding-right: 12px;
+    box-sizing: border-box;
 }
 
 .avatar {

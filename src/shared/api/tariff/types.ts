@@ -10,6 +10,7 @@ export type GetTariffListResponse = {
     days: number
     stars: number
     dollars: number
+    major: number
 }[]
 
 export type TariffApi = {

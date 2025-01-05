@@ -1,0 +1,107 @@
+.root {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: var(--background-section);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.name {
+    font-size: 32px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+}
+
+.data {
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+}
+
+.avatar {
+    position: relative;
+    overflow: hidden;
+
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-secondary);
+
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total {
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stars {
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+}
+
+.dollars {
+    position: relative;
+
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-secondary);
+
+    &.is-discount {
+        &::after {
+            content: '';
+
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: rotate(30deg) translateY(-50%);
+            width: 24px;
+            height: 1px;
+            background-color: var(--background-critical);
+        }
+    }
+}

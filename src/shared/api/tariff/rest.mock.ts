@@ -13,6 +13,7 @@ export const tariffApi: TariffApi = {
                     size: 1,
                     days: 7,
                     stars: 350,
+                    major: 1350,
                     dollars: 3.5,
                 },
                 {
@@ -20,6 +21,7 @@ export const tariffApi: TariffApi = {
                     size: 10,
                     days: 30,
                     stars: 1350,
+                    major: 2350,
                     dollars: 53.5,
                 }
             ]
