@@ -46,11 +46,12 @@
     font-weight: 400;
     color: var(--color-secondary);
     text-align: center;
+
+    margin-bottom: 24px;
 }
 
 .modal-button {
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-top: 24px;
 }

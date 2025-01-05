@@ -40,7 +40,10 @@ const ButtonComponent: React.FC<ButtonProps> = ({
                 className={styles.loader}
             >
                 {isLoading && (
-                    <Loader />
+                    <Loader
+                        size={'xs'}
+                        color={'white'}
+                    />
                 )}
             </TransitionFade>
         </button>

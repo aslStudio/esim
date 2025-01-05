@@ -5,6 +5,7 @@ import {reflect} from "@effector/reflect"
 import {esimExpandModel} from "@/entities/esim/model"
 
 import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
+import {RootPaths} from "@/shared/lib"
 
 import {
     EsimQR,
@@ -17,7 +18,7 @@ import styles from './EsimPage.module.scss'
 
 export const EsimPage = () => {
     const params = useParams()
-    const { goBack } = useProjectNavigate()
+    const { navigate } = useProjectNavigate()
 
     const { BackButton } = useTelegram()
 
@@ -29,8 +30,10 @@ export const EsimPage = () => {
 
     useEffect(() => {
         BackButton?.show()
-        BackButton?.onClick(goBack)
-    }, [BackButton, goBack])
+        BackButton?.onClick(() => {
+            navigate(RootPaths.MAIN)
+        })
+    }, [BackButton, navigate])
 
     return (
         <div className={styles.root}>

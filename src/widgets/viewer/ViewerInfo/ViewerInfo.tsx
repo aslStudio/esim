@@ -1,8 +1,11 @@
-import {viewerModel} from "@/entities/viewer/model";
-import {TransitionFade} from "@/shared/ui/TransitionFade";
-import {ViewerCell, ViewerCellSkeleton} from "@/entities/viewer/ui/ViewerCell";
-import {reflect} from "@effector/reflect";
-import React from "react";
+import React from "react"
+import {reflect} from "@effector/reflect"
+
+import {viewerModel} from "@/entities/viewer/model"
+
+import {TransitionFade} from "@/shared/ui/TransitionFade"
+import {ViewerCell, ViewerCellSkeleton} from "@/entities/viewer/ui/ViewerCell"
+import {SkeletonWrapper} from "@/shared/ui/SkeletonWrapper"
 
 export const ViewerInfo: React.FC<{
     isInteractive: boolean;
@@ -14,7 +17,9 @@ export const ViewerInfo: React.FC<{
     return (
         <TransitionFade>
             {isLoading && (
-                <ViewerCellSkeleton />
+                <SkeletonWrapper>
+                    <ViewerCellSkeleton />
+                </SkeletonWrapper>
             )}
             {!isLoading && (
                 <ViewerCellReflect

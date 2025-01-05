@@ -8,6 +8,7 @@ import {TransitionFade} from "@/shared/ui/TransitionFade"
 import styles from './EsimList.module.scss'
 import {EsimCardList, EsimCardListSkeleton} from "@/entities/esim/ui";
 import {reflect} from "@effector/reflect";
+import {SkeletonWrapper} from "@/shared/ui/SkeletonWrapper";
 
 export const EsimList = () => {
     const { isLoading } = esimListModel.useFetchGate()
@@ -36,9 +37,11 @@ export const EsimList = () => {
                 className={styles.wrapper}
             >
                 {isLoading && (
-                    <EsimCardListSkeleton
-                        key={'Skeleton'}
-                    />
+                    <SkeletonWrapper>
+                        <EsimCardListSkeleton
+                            key={'Skeleton'}
+                        />
+                    </SkeletonWrapper>
                 )}
                 {!isLoading && (
                     <>

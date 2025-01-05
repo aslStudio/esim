@@ -11,6 +11,7 @@ import {regionListModel} from "@/entities/region/model"
 import {useLanguageProvider} from "@/shared/lib/providers"
 import {TransitionFade} from "@/shared/ui/TransitionFade"
 import {Button} from "@/shared/ui/Button"
+import {SkeletonWrapper} from "@/shared/ui/SkeletonWrapper"
 import { useProjectNavigate, useTelegram } from "@/shared/lib/hooks"
 import {CreatePaths, RootPaths} from "@/shared/lib"
 
@@ -38,9 +39,11 @@ export const CreateEsimRegionPage = () => {
                 className={styles.list}
             >
                 {isPending && (
-                    <RegionCellListSkeleton
-                        key={'Skeleton'}
-                    />
+                    <SkeletonWrapper>
+                        <RegionCellListSkeleton
+                            key={'Skeleton'}
+                        />
+                    </SkeletonWrapper>
                 )}
                 {!isPending && (
                     <ListReflect

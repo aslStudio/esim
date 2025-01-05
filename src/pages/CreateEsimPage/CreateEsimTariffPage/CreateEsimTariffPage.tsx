@@ -13,9 +13,10 @@ import {useLanguageProvider} from "@/shared/lib/providers"
 import {Button} from "@/shared/ui/Button"
 import {TransitionFade} from "@/shared/ui/TransitionFade"
 import {CardCollapse} from "@/shared/ui/CardCollapse"
+import {CreatePaths, RootPaths} from "@/shared/lib"
+import {SkeletonWrapper} from "@/shared/ui/SkeletonWrapper"
 
 import styles from './CreateEsimTariffPage.module.scss'
-import {CreatePaths, RootPaths} from "@/shared/lib";
 
 export const CreateEsimTariffPage = () => {
     const { goBack, navigate } = useProjectNavigate()
@@ -42,9 +43,11 @@ export const CreateEsimTariffPage = () => {
             <h1 className={styles.title}>{title}</h1>
             <TransitionFade className={styles.list}>
                 {isPending && (
-                    <TariffCardListSkeleton
-                        key={'Skeleton'}
-                    />
+                    <SkeletonWrapper>
+                        <TariffCardListSkeleton
+                            key={'Skeleton'}
+                        />
+                    </SkeletonWrapper>
                 )}
                 {!isPending && (
                     <>
