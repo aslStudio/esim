@@ -1,0 +1,22 @@
+.root {
+    width: 100%;
+    padding: 20px;
+    border-radius: 16px;
+    box-sizing: border-box;
+    background-color: var(--background-section);
+}
+
+.title {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+
+    margin-bottom: 8px;
+}
+
+.cell {
+    & + & {
+        margin-top: 16px;
+    }
+}

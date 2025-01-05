@@ -46,6 +46,33 @@ export const en = {
                     button: 'Confirm And Pay'
                 }
             }
+        },
+        expand: {
+            howTo: {
+                title: 'How to install eSIM',
+                description: [
+                    'Take a photo or send the QR code  to another device',
+                    'Make sure you have a stable Wi-Fi connection  during installation',
+                    'Scan the QR code with the phone you want  to install the eSIM on',
+                    'Remember that the QR code can only be  used once. Do not delete it, as it cannot  be reinstalled'
+                ]
+            },
+            manual: {
+                title: 'For manual installation, use the following data:',
+                smdp: 'SM-DP',
+                code: 'Activation code',
+            },
+            beforeUsing: {
+                title: 'Before using esim, make sure that',
+                description: [
+                    'eSIM is installed',
+                    'you are located in the region where your  data plan operates',
+                    'Mobile data is enabled',
+                    'The eSIM is set as your mobile data plan',
+                    'eSIM data roaming is enabled'
+                ]
+            },
+            button: 'Install the eSIM on this device'
         }
     },
     widgets: {

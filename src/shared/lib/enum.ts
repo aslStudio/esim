@@ -2,6 +2,7 @@ export enum RootPaths {
     AUTH = '/auth',
     MAIN = '/main',
     PROFILE = '/profile',
+    ESIM = '/esim/:id',
     CREATE = '/create',
     ANOTHER = '*',
 }

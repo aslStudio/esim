@@ -1,0 +1,37 @@
+.root {
+    padding: 20px;
+    border-radius: 16px;
+    box-sizing: border-box;
+    background-color: var(--background-section);
+}
+
+.title {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+
+    margin-bottom: 8px;
+}
+
+.item {
+    position: relative;
+    padding-left: 20px;
+
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--color-base);
+
+    &::before {
+        content: '';
+
+        position: absolute;
+        top: 9px;
+        left: 9px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: var(--color-base);
+    }
+}

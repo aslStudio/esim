@@ -14,7 +14,31 @@ export type GetEsimListResponse = {
     dataLeft: number
 }[]
 
+export type CreateEsimParams = {
+    regionId: number | string
+    tariffId: number | string
+}
+
+export type CreateEsimResponse = {
+    id: number | string
+}
+
+export type GetEsimExpandParams = {
+    id: number | string
+}
+
+export type GetEsimExpandResponse = {
+    id: number | string
+    qr: string
+    smdp: string
+    code: string
+}
+
 export type EsimApi = {
     getList: () =>
         Promise<ResponseDefault<GetEsimListResponse>>
+    getEsimExpand: (p: GetEsimExpandParams) =>
+        Promise<ResponseDefault<GetEsimExpandResponse>>
+    create: (p: CreateEsimParams) =>
+        Promise<ResponseDefault<CreateEsimResponse>>
 }

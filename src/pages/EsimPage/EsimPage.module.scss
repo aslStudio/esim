@@ -1,0 +1,56 @@
+.root {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    padding-top: calc(var(--safe-area-inset-top, 0px) + 50px);
+    padding-bottom: calc(var(--safe-area-inset-bottom, 0px) + 97px);
+    padding-left: 16px;
+    padding-right: 16px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 32px;
+    line-height: 22px;
+    font-weight: 600;
+}
+
+.qr {
+    margin-top: 32px;
+}
+
+.button {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+
+    margin-top: 38px;
+}
+
+.how-to {
+    width: 100%;
+    margin-top: 32px;
+}
+
+.manual {
+    margin-top: 16px;
+}
+
+.before-using {
+    margin-top: 16px;
+}

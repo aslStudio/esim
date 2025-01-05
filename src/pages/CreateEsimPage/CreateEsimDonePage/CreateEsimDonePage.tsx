@@ -1,21 +1,30 @@
+import {useEffect} from "react"
+import {reflect} from "@effector/reflect"
+import {useUnit} from "effector-react"
+
+import {createEsimModel} from "@/features/create/model"
+
 import {LottieAnimation} from "@/shared/ui/LottieAnimation"
 import {useLanguageProvider} from "@/shared/lib/providers"
 import {Button} from "@/shared/ui/Button"
 import {Modal, useModal} from "@/shared/ui/Modal"
+import {PaymentType} from "@/shared/api/enum.ts"
+import {AnimatedIcon} from "@/shared/ui/AnimatedIcon"
+import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
+import {RootPaths} from "@/shared/lib"
 
 import styles from './CreateEsimDonePage.module.scss'
-import {useUnit} from "effector-react";
-import {createEsimModel} from "@/features/create/model";
-import {PaymentType} from "@/shared/api/enum.ts";
-import {AnimatedIcon} from "@/shared/ui/AnimatedIcon";
 
 export const CreateEsimDonePage = () => {
+    const { navigate, goBack } = useProjectNavigate()
+
     const [
         data
     ] = useUnit([
         createEsimModel.$data
     ])
 
+    const { BackButton } = useTelegram()
     const {isOpen, open, close} = useModal()
     const { content } = useLanguageProvider()
     const {
@@ -24,6 +33,20 @@ export const CreateEsimDonePage = () => {
         button,
         modal
     } = content.pages.create.done
+
+    useEffect(() => {
+        createEsimModel.onSuccess.set(id => {
+            close()
+            navigate(
+                RootPaths.ESIM.replace(':id', `${id}`)
+            )
+        })
+    }, [])
+
+    useEffect(() => {
+        BackButton?.show()
+        BackButton?.onClick(goBack)
+    }, [BackButton, goBack])
 
     return (
         <>
@@ -66,9 +89,7 @@ export const CreateEsimDonePage = () => {
                             .replace('__', `${data.paymentType === PaymentType.STARS ? `${data.tariff?.stars} Stars` : `${data.tariff?.major} Major`}`)
                     }
                 </p>
-                <Button
-                    onClick={close}
-                >
+                <CreateButtonReflect>
                     <div className={styles['modal-button']}>
                         {modal.button}
                         <AnimatedIcon
@@ -77,8 +98,16 @@ export const CreateEsimDonePage = () => {
                         />
                         {data.tariff?.stars}
                     </div>
-                </Button>
+                </CreateButtonReflect>
             </Modal>
         </>
     )
 }
+
+const CreateButtonReflect = reflect({
+    view: Button,
+    bind: {
+        isLoading: createEsimModel.$isPending,
+        onClick: createEsimModel.esimCreated
+    }
+})

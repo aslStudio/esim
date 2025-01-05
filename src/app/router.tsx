@@ -9,10 +9,11 @@ import {
     CreateEsimRegionPage,
     CreateEsimTariffPage,
     CreateEsimPaymentMethodPage,
-    CreateEsimDonePage
+    CreateEsimDonePage,
 } from "@/pages/CreateEsimPage"
+import { EsimPage } from "@/pages/EsimPage"
 
-import {CreatePaths, RootPaths} from "@/shared/lib"
+import { CreatePaths, RootPaths } from "@/shared/lib"
 import { tokenModel } from "@/shared/model"
 import { useRouteTransitionContext } from "@/shared/lib/providers/RouteTransitionProvider"
 
@@ -93,6 +94,10 @@ export const RouterView = () => {
                         element={<CreateEsimDonePage />}
                     />
                 </Route>
+                <Route
+                    path={RootPaths.ESIM}
+                    element={<EsimPage />}
+                />
                 <Route
                     path={RootPaths.ANOTHER}
                     element={<AnotherRoute />}

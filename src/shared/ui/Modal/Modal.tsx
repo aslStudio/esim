@@ -39,7 +39,7 @@ const ModalComponent: React.FC<ModalProps> = ({
                             opacity: 0
                         }}
                         animate={{
-                            opacity: 1
+                            opacity: 0.8
                         }}
                         exit={{
                             opacity: 0

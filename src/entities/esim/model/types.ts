@@ -12,3 +12,10 @@ export type ESIMItem = {
     daysLeft: number
     dataLeft: number
 }
+
+export type ESIMExpand = {
+    id: number | string
+    qr: string
+    smdp: string
+    code: string
+}
