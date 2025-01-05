@@ -1,0 +1,55 @@
+.root {
+    padding-top: 14px;
+}
+
+.title {
+    font-size: 32px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--color-base);
+    text-align: center;
+
+    margin-top: 32px;
+}
+
+.description {
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--color-base);
+    text-align: center;
+
+    margin-top: 32px;
+}
+
+.button {
+    position: fixed;
+    left: 16px;
+    bottom: calc(var(--safe-area-inset-bottom, 0px) + 32px);
+
+    width: calc(100% - 32px);
+}
+
+.modal-title {
+    margin-top: 24px;
+
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 600;
+    color: var(--color-base);
+    text-align: center;
+}
+
+.modal-description {
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--color-secondary);
+    text-align: center;
+}
+
+.modal-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

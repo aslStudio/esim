@@ -35,6 +35,16 @@ export const ru = {
                     'выбранный тарифф перед оплатой'
                 ],
                 button: 'Next step'
+            },
+            done: {
+                title: 'Готово!',
+                description: 'Оплатите чтобы закончить',
+                button: 'Оплатить',
+                modal: {
+                    title: 'Подтвердите оплату',
+                    description: 'Вы хотите купить "eSIM план (_Дней)" в eSIM за __?',
+                    button: 'Подтвердить и оплатить'
+                }
             }
         }
     },

@@ -9,6 +9,7 @@ import {
     CreateEsimRegionPage,
     CreateEsimTariffPage,
     CreateEsimPaymentMethodPage,
+    CreateEsimDonePage
 } from "@/pages/CreateEsimPage"
 
 import {CreatePaths, RootPaths} from "@/shared/lib"
@@ -86,6 +87,10 @@ export const RouterView = () => {
                     <Route
                         path={CreatePaths.PAYMENT}
                         element={<CreateEsimPaymentMethodPage />}
+                    />
+                    <Route
+                        path={CreatePaths.DONE}
+                        element={<CreateEsimDonePage />}
                     />
                 </Route>
                 <Route

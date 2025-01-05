@@ -8,9 +8,10 @@ import {useLanguageProvider} from "@/shared/lib/providers"
 import styles from './CreateEsimPaymentMethodPage.module.scss'
 import {Icon} from "@/shared/ui/Icon";
 import {Button} from "@/shared/ui/Button";
+import {CreatePaths, RootPaths} from "@/shared/lib";
 
 export const CreateEsimPaymentMethodPage = () => {
-    const { goBack } = useProjectNavigate()
+    const { goBack, navigate } = useProjectNavigate()
 
     const { BackButton } = useTelegram()
     const { content } = useLanguageProvider()
@@ -31,7 +32,7 @@ export const CreateEsimPaymentMethodPage = () => {
                 <div className={styles.alert}>
                     <Icon
                         name={'smile'}
-                        view={'button'}
+                        view={'brand'}
                         size={28}
                     />
                     <div>
@@ -40,7 +41,12 @@ export const CreateEsimPaymentMethodPage = () => {
                     </div>
                 </div>
                 <Button
-                    onClick={() => {}}
+                    onClick={() => {
+                        navigate(
+                            RootPaths.CREATE,
+                            CreatePaths.DONE,
+                        )
+                    }}
                 >
                     {button}
                 </Button>

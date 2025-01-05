@@ -35,6 +35,16 @@ export const en = {
                     'your tariff details before paying'
                 ],
                 button: 'Next step'
+            },
+            done: {
+                title: 'Done!',
+                description: 'Please pay to complete',
+                button: 'Pay',
+                modal: {
+                    title: 'Confirm Your Purchase',
+                    description: 'Do you want to buy "eSIM plan (_Days)" in eSIM for __?',
+                    button: 'Confirm And Pay'
+                }
             }
         }
     },

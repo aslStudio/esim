@@ -25,23 +25,27 @@
       content: "\e004";
       font-family: 'custom-icon-font';
     }
-.icon-eye-closed:before {
+.icon-close:before {
       content: "\e005";
       font-family: 'custom-icon-font';
     }
-.icon-eye-slash:before {
+.icon-eye-closed:before {
       content: "\e006";
       font-family: 'custom-icon-font';
     }
-.icon-eye:before {
+.icon-eye-slash:before {
       content: "\e007";
       font-family: 'custom-icon-font';
     }
-.icon-search:before {
+.icon-eye:before {
       content: "\e008";
       font-family: 'custom-icon-font';
     }
-.icon-smile:before {
+.icon-search:before {
       content: "\e009";
+      font-family: 'custom-icon-font';
+    }
+.icon-smile:before {
+      content: "\e00a";
       font-family: 'custom-icon-font';
     }

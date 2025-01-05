@@ -3,6 +3,7 @@ export const iconNames = [
   "chevron_bottom",
   "chevron_right",
   "clock",
+  "close",
   "eye-closed",
   "eye-slash",
   "eye",

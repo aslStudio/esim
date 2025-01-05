@@ -6,4 +6,5 @@ export const views = [
     'secondary',
     'button',
     'section',
+    'brand',
 ] as const
