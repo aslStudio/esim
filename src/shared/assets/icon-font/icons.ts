@@ -9,6 +9,7 @@ export const iconNames = [
   "eye-closed",
   "eye-slash",
   "eye",
+  "phone-slash",
   "search",
   "smile"
 ] as const

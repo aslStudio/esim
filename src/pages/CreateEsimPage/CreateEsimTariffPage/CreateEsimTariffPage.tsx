@@ -17,6 +17,7 @@ import {CreatePaths, RootPaths} from "@/shared/lib"
 import {SkeletonWrapper} from "@/shared/ui/SkeletonWrapper"
 
 import styles from './CreateEsimTariffPage.module.scss'
+import {Icon} from "@/shared/ui/Icon";
 
 export const CreateEsimTariffPage = () => {
     const { goBack, navigate } = useProjectNavigate()
@@ -31,7 +32,7 @@ export const CreateEsimTariffPage = () => {
 
     const { BackButton } = useTelegram()
     const { content } = useLanguageProvider()
-    const { title, next, availableTitle } = content.pages.create.tariff
+    const { title, next, availableTitle, noPhone } = content.pages.create.tariff
 
     useEffect(() => {
         BackButton?.show()
@@ -58,6 +59,17 @@ export const CreateEsimTariffPage = () => {
                             title={`${availableTitle}: ${count}`}
                             size={'m'}
                         />
+                        <div className={styles['no-phone']}>
+                            <Icon
+                                name={'phone-slash'}
+                                view={'secondary'}
+                                size={24}
+                            />
+                            <div>
+                                <p>{noPhone[0]}</p>
+                                <p>{noPhone[1]}</p>
+                            </div>
+                        </div>
                     </>
                 )}
             </TransitionFade>

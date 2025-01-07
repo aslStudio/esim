@@ -26,6 +26,10 @@ export const en = {
             tariff: {
                 title: 'Select Tariff',
                 availableTitle: 'Available countries',
+                noPhone: [
+                    'Data and calls over the Internet only',
+                    'This plan does not come with a number'
+                ],
                 next: 'Next step'
             },
             paymentMethod: {

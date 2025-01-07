@@ -26,6 +26,10 @@ export const ru = {
             tariff: {
                 title: 'Выберете тариф',
                 availableTitle: 'Доступные страны',
+                noPhone: [
+                    'Данные и звонки только через Интернет',
+                    'Этот план не имеет номера'
+                ],
                 next: 'Следующий шаг'
             },
             paymentMethod: {
