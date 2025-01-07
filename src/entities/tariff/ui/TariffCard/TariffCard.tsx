@@ -1,14 +1,14 @@
 import React from "react"
-import {clsx} from "clsx"
+import { clsx } from "clsx"
 
-import {Tariff} from "@/entities/tariff/model"
+import { Tariff } from "@/entities/tariff/model"
 
-import {PropsDefault} from "@/shared/lib"
-import {Radio} from "@/shared/ui/Radio"
-import {AnimatedIcon} from "@/shared/ui/AnimatedIcon"
+import { PropsDefault } from "@/shared/lib"
+import { Radio } from "@/shared/ui/Radio"
+import { toFormattedNumber } from "@/shared/lib/number.ts"
+import { MajorIcon } from "@/shared/ui/MajorIcon"
 
 import styles from './TariffCard.module.scss'
-import {toFormattedNumber} from "@/shared/lib/number.ts";
 
 export type TariffCardProps = PropsDefault<{
     tariff: Tariff
@@ -41,11 +41,8 @@ export const TariffCard: React.FC<TariffCardProps> = ({
                     <p className={styles.description}>{tariff.days} Days</p>
                 </div>
                 <div className={styles.price}>
-                    <AnimatedIcon
-                        name={'star'}
-                        size={24}
-                    />
-                    <p className={styles.title}>{toFormattedNumber(tariff.stars)}</p>
+                    <MajorIcon />
+                    <p className={styles.title}>{toFormattedNumber(tariff.price)}</p>
                     <p className={styles.description}>${toFormattedNumber(tariff.dollars)}</p>
                 </div>
             </div>

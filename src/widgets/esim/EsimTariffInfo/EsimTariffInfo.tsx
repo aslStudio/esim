@@ -4,13 +4,10 @@ import {useUnit} from "effector-react"
 
 import {createEsimModel} from "@/features/create/model"
 
-import {AnimatedIcon} from "@/shared/ui/AnimatedIcon"
-import {PaymentType} from "@/shared/api/enum.ts"
 import {PropsDefault} from "@/shared/lib"
+import {MajorIcon} from "@/shared/ui/MajorIcon"
 
 import styles from './EsimTariffInfo.module.scss'
-import {MajorIcon} from "@/shared/ui/MajorIcon/MajorIcon.tsx";
-import {TransitionFade} from "@/shared/ui/TransitionFade";
 
 export const EsimTariffInfo: React.FC<PropsDefault> = ({
     className
@@ -49,44 +46,19 @@ export const EsimTariffInfo: React.FC<PropsDefault> = ({
             />
             <div className={styles.body}>
                 <p className={styles.total}>Total:</p>
-                <TransitionFade className={styles.price}>
-                    {data.paymentType === PaymentType.STARS && (
-                        <>
-                            <AnimatedIcon
-                                name={'star'}
-                                size={24}
-                            />
-                            <p
-                                className={styles.stars}
-                            >
-                                {data.tariff?.stars}
-                            </p>
-                            <p
-                                className={styles.dollars}
-                            >
-                                ${data.tariff?.dollars}
-                            </p>
-                        </>
-                    )}
-                    {data.paymentType === PaymentType.MAJOR && (
-                        <>
-                            <MajorIcon/>
-                            <p
-                                className={styles.stars}
-                            >
-                                {data.tariff?.major}
-                            </p>
-                            <p
-                                className={clsx(
-                                    styles.dollars,
-                                    styles['is-discount']
-                                )}
-                            >
-                                ${(data.tariff?.dollars ?? 0) / 2} / ${data.tariff?.dollars}
-                            </p>
-                        </>
-                    )}
-                </TransitionFade>
+                <div className={styles.price}>
+                    <MajorIcon />
+                    <p
+                        className={styles.stars}
+                    >
+                        {data.tariff?.price}
+                    </p>
+                    <p
+                        className={styles.dollars}
+                    >
+                        ${data.tariff?.dollars}
+                    </p>
+                </div>
             </div>
         </div>
     )

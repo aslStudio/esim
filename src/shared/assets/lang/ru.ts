@@ -39,7 +39,7 @@ export const ru = {
             done: {
                 title: 'Готово!',
                 description: 'Оплатите чтобы закончить',
-                button: 'Вернуться на главную страницу',
+                button: 'Установить eSIM',
                 modal: {
                     title: 'Подтвердите оплату',
                     description: 'Вы хотите купить "eSIM план (_Дней)" в eSIM за __?',

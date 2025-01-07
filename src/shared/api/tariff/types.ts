@@ -8,9 +8,8 @@ export type GetTariffListResponse = {
     id: number
     size: number
     days: number
-    stars: number
+    price: number
     dollars: number
-    major: number
 }[]
 
 export type TariffApi = {

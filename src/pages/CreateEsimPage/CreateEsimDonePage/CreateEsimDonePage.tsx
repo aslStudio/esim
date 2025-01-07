@@ -8,9 +8,8 @@ import {LottieAnimation} from "@/shared/ui/LottieAnimation"
 import {useLanguageProvider} from "@/shared/lib/providers"
 import {Button} from "@/shared/ui/Button"
 import {Modal, useModal} from "@/shared/ui/Modal"
-import {PaymentType} from "@/shared/api/enum.ts"
-import {AnimatedIcon} from "@/shared/ui/AnimatedIcon"
 import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
+import {MajorIcon} from "@/shared/ui/MajorIcon"
 import {RootPaths} from "@/shared/lib"
 
 import styles from './CreateEsimDonePage.module.scss'
@@ -87,17 +86,14 @@ export const CreateEsimDonePage = () => {
                     {
                         modal.description
                             .replace('_', `${data.region?.name} ${data.tariff?.size}GB/${data.tariff?.days}`)
-                            .replace('__', `${data.paymentType === PaymentType.STARS ? `${data.tariff?.stars} Stars` : `${data.tariff?.major} Major`}`)
+                            .replace('__', `${data.tariff?.price} Major`)
                     }
                 </p>
                 <CreateButtonReflect>
                     <div className={styles['modal-button']}>
                         {modal.button}
-                        <AnimatedIcon
-                            name={'star-white'}
-                            size={22}
-                        />
-                        {data.tariff?.stars}
+                        <MajorIcon />
+                        {data.tariff?.price}
                     </div>
                 </CreateButtonReflect>
             </Modal>

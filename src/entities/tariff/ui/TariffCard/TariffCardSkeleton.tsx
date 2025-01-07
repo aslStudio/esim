@@ -2,10 +2,10 @@ import React from "react"
 import {clsx} from "clsx"
 
 import {PropsDefault} from "@/shared/lib"
+import {TextSkeleton} from "@/shared/ui/TextSkeleton"
+import {MajorIcon} from "@/shared/ui/MajorIcon"
 
 import styles from './TariffCard.module.scss'
-import {TextSkeleton} from "@/shared/ui/TextSkeleton";
-import {AnimatedIcon} from "@/shared/ui/AnimatedIcon";
 
 export const TariffCardSkeleton: React.FC<PropsDefault> = ({
     className,
@@ -33,10 +33,7 @@ export const TariffCardSkeleton: React.FC<PropsDefault> = ({
                     />
                 </div>
                 <div className={styles.price}>
-                    <AnimatedIcon
-                        name={'star'}
-                        size={24}
-                    />
+                    <MajorIcon />
                     <TextSkeleton
                         fontSize={20}
                         lineHeight={22}
