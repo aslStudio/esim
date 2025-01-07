@@ -8,6 +8,7 @@ import {Radio} from "@/shared/ui/Radio"
 import {AnimatedIcon} from "@/shared/ui/AnimatedIcon"
 
 import styles from './TariffCard.module.scss'
+import {toFormattedNumber} from "@/shared/lib/number.ts";
 
 export type TariffCardProps = PropsDefault<{
     tariff: Tariff
@@ -44,8 +45,8 @@ export const TariffCard: React.FC<TariffCardProps> = ({
                         name={'star'}
                         size={24}
                     />
-                    <p className={styles.title}>{tariff.stars}</p>
-                    <p className={styles.description}>${tariff.dollars}</p>
+                    <p className={styles.title}>{toFormattedNumber(tariff.stars)}</p>
+                    <p className={styles.description}>${toFormattedNumber(tariff.dollars)}</p>
                 </div>
             </div>
         </Radio>

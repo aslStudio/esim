@@ -22,6 +22,7 @@ export function toFormattedNumber(value: number) {
     const withFractions = parseFloat(removeSpaces.replace(',', '.'))
         .toFixed(2)
         .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+        .replace('.', ',')
 
     if (isHasFractions) {
         newValue = withFractions

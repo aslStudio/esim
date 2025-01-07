@@ -3,6 +3,8 @@ import {createPortal} from "react-dom";
 import { disablePageScroll, enablePageScroll } from 'scroll-lock'
 import {AnimatePresence, motion} from 'framer-motion'
 
+import {useTelegram} from "@/shared/lib/hooks"
+
 import {Icon} from "../Icon"
 
 import styles from './Modal.module.scss'
@@ -18,6 +20,8 @@ const ModalComponent: React.FC<ModalProps> = ({
 
     children
 }) => {
+    const { haptic } = useTelegram()
+
     useEffect(() => {
         if (isOpen) {
             disablePageScroll()
@@ -65,7 +69,10 @@ const ModalComponent: React.FC<ModalProps> = ({
                         <div>
                             <button
                                 className={styles.button}
-                                onClick={() => setIsOpen(false)}
+                                onClick={() => {
+                                    haptic()
+                                    setIsOpen(false)
+                                }}
                             >
                                 <Icon
                                     name={'close'}

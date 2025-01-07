@@ -5,9 +5,9 @@ import {Viewer} from "@/entities/viewer/model/types.ts"
 
 import {PropsDefault, RootPaths} from "@/shared/lib"
 import {Icon} from "@/shared/ui/Icon"
+import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
 
 import styles from './ViewerCell.module.scss'
-import {useProjectNavigate} from "@/shared/lib/hooks";
 
 export type ViewerCellProps = PropsDefault<{
     viewer: Viewer
@@ -20,6 +20,7 @@ export const ViewerCell: React.FC<ViewerCellProps> = ({
     isInterActive
 }) => {
     const { navigate } = useProjectNavigate()
+    const { haptic } = useTelegram()
 
     return (
         <div
@@ -29,6 +30,7 @@ export const ViewerCell: React.FC<ViewerCellProps> = ({
             )}
             onClick={() => {
                 if (isInterActive) {
+                    haptic()
                     navigate(RootPaths.PROFILE)
                 }
             }}
