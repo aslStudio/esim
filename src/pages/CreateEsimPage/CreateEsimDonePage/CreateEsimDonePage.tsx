@@ -25,7 +25,7 @@ export const CreateEsimDonePage = () => {
     ])
 
     const { BackButton } = useTelegram()
-    const {isOpen, open, close} = useModal()
+    const { isOpen, open, close } = useModal()
     const { content } = useLanguageProvider()
     const {
         title,
@@ -35,6 +35,7 @@ export const CreateEsimDonePage = () => {
     } = content.pages.create.done
 
     useEffect(() => {
+        open()
         createEsimModel.onSuccess.set(id => {
             close()
             navigate(

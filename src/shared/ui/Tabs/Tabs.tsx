@@ -1,9 +1,10 @@
 import React from "react"
+import {clsx} from "clsx"
 
 import {PropsDefault} from "@/shared/lib"
+import {useTelegram} from "@/shared/lib/hooks"
 
 import styles from './Tabs.module.scss'
-import {clsx} from "clsx";
 
 export type TabsProps = PropsDefault<{
     value: number | string
@@ -20,6 +21,8 @@ const TabsComponent: React.FC<TabsProps> = ({
     data,
     setValue,
 }) => {
+    const { haptic } = useTelegram()
+
     return (
         <div
             className={clsx(
@@ -29,6 +32,7 @@ const TabsComponent: React.FC<TabsProps> = ({
         >
             {data.map(item => (
                 <button
+                    key={item.id}
                     className={clsx(
                         styles.item,
                         {
@@ -36,6 +40,7 @@ const TabsComponent: React.FC<TabsProps> = ({
                         }
                     )}
                     onClick={() => {
+                        haptic()
                         setValue(item.id)
                     }}
                 >

@@ -1,0 +1,15 @@
+.major {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+
+    background: linear-gradient(45deg, #012145 0%, #02346C 100%);
+}
+
+.major-icon {
+    margin-top: -2px;
+}

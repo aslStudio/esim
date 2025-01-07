@@ -6,6 +6,7 @@ import {TransitionFade} from "@/shared/ui/TransitionFade";
 import {Loader} from "@/shared/ui/Loader";
 
 import styles from './Button.module.scss'
+import {useTelegram} from "@/shared/lib/hooks";
 
 export type ButtonProps = PropsDefaultWithChildren<{
     isDisabled?: boolean
@@ -20,6 +21,8 @@ const ButtonComponent: React.FC<ButtonProps> = ({
     onClick,
     children
 }) => {
+    const { haptic } = useTelegram()
+
     return (
         <button
             className={clsx(
@@ -31,7 +34,10 @@ const ButtonComponent: React.FC<ButtonProps> = ({
                 }
             )}
             disabled={isDisabled || isLoading}
-            onClick={onClick}
+            onClick={() => {
+                haptic()
+                onClick()
+            }}
         >
             <div className={styles.content}>
                 {children}

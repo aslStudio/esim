@@ -11,6 +11,7 @@ import {AnimatedIcon} from "@/shared/ui/AnimatedIcon"
 
 import styles from './CreateEsimPaymentMethod.module.scss'
 import {images} from "@/shared/assets/images";
+import {MajorIcon} from "@/shared/ui/MajorIcon/MajorIcon.tsx";
 
 export const CreateEsimPaymentMethod: React.FC<PropsDefault> = ({
     className
@@ -55,13 +56,7 @@ export const CreateEsimPaymentMethod: React.FC<PropsDefault> = ({
                 }}
             >
                 <div className={styles.wrapper}>
-                    <div className={styles.major}>
-                        <AnimatedIcon
-                            className={styles['major-icon']}
-                            name={'star'}
-                            size={16}
-                        />
-                    </div>
+                    <MajorIcon />
                     <p>$MAJOR</p>
                     <img
                         className={styles.sale}

@@ -5,6 +5,7 @@ import {Region} from "@/entities/region/model"
 
 import {PropsDefault} from "@/shared/lib"
 import {Icon} from "@/shared/ui/Icon"
+import {useTelegram} from "@/shared/lib/hooks"
 
 import styles from './RegionCell.module.scss'
 
@@ -20,6 +21,8 @@ export const RegionCell: React.FC<RegionCellProps> = ({
     isInteractive,
     onClick
 }) => {
+    const { haptic } = useTelegram()
+
     return (
         <div
             className={clsx(
@@ -28,6 +31,7 @@ export const RegionCell: React.FC<RegionCellProps> = ({
             )}
             onClick={() => {
                 if (isInteractive) {
+                    haptic()
                     onClick?.(cell)
                 }
             }}

@@ -5,10 +5,10 @@ import {PropsDefault} from "@/shared/lib"
 import {TransitionFade} from "@/shared/ui/TransitionFade"
 import {Loader} from "@/shared/ui/Loader"
 import {Icon} from "@/shared/ui/Icon"
-import {TextSkeleton} from "@/shared/ui/TextSkeleton";
+import {TextSkeleton} from "@/shared/ui/TextSkeleton"
+import {useCopyToClipboard, useTelegram} from "@/shared/lib/hooks"
 
 import styles from './CopyCell.module.scss'
-import {useCopyToClipboard} from "@/shared/lib/hooks";
 
 export type CopyCellProps = PropsDefault<{
     label: string
@@ -22,6 +22,7 @@ export const CopyCell: React.FC<CopyCellProps> = ({
     value,
     isLoading,
 }) => {
+    const { haptic } = useTelegram()
     const { copy } = useCopyToClipboard()
 
     return (
@@ -33,6 +34,7 @@ export const CopyCell: React.FC<CopyCellProps> = ({
             onClick={() => {
                 if (!isLoading) {
                     copy(value)
+                    haptic()
                 }
             }}
         >

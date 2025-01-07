@@ -39,7 +39,7 @@ export const en = {
             done: {
                 title: 'Done!',
                 description: 'Please pay to complete',
-                button: 'Pay',
+                button: 'Return to home page',
                 modal: {
                     title: 'Confirm Your Purchase',
                     description: 'Do you want to buy "eSIM plan (_Days)" in eSIM for __?',

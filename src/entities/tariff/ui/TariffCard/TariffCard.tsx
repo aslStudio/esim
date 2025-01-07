@@ -5,9 +5,9 @@ import {Tariff} from "@/entities/tariff/model"
 
 import {PropsDefault} from "@/shared/lib"
 import {Radio} from "@/shared/ui/Radio"
+import {AnimatedIcon} from "@/shared/ui/AnimatedIcon"
 
 import styles from './TariffCard.module.scss'
-import {AnimatedIcon} from "@/shared/ui/AnimatedIcon";
 
 export type TariffCardProps = PropsDefault<{
     tariff: Tariff

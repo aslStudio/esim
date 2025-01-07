@@ -1,4 +1,4 @@
-import {useMemo} from "react"
+import {useEffect, useMemo} from "react"
 import {useLocation} from "react-router-dom"
 
 import {CreatePaths} from "@/shared/lib"
@@ -31,7 +31,11 @@ export const useCreateEsimStep = () => {
             return 2
         }
         return 1
-    }, [activeStep])
+    }, [activeStep, location])
+
+    useEffect(() => {
+        console.log(activeStepNumber)
+    }, [activeStepNumber]);
 
     return {
         activeStep,

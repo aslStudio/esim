@@ -1,11 +1,12 @@
 import React from "react"
+import {clsx} from "clsx"
 
 import {PropsDefaultWithChildren} from "@/shared/lib"
 import {Icon} from "@/shared/ui/Icon"
 import {TransitionFade} from "@/shared/ui/TransitionFade"
+import {useTelegram} from "@/shared/lib/hooks"
 
 import styles from './Radio.module.scss'
-import {clsx} from "clsx";
 
 export type RadioProps = PropsDefaultWithChildren<{
     value: boolean
@@ -18,6 +19,8 @@ const RadioComponent: React.FC<RadioProps> = ({
     setValue,
     children
 }) => {
+    const { haptic } = useTelegram()
+
     return (
         <div
             className={clsx(
@@ -26,6 +29,7 @@ const RadioComponent: React.FC<RadioProps> = ({
             )}
             onClick={() => {
                 setValue(!value)
+                haptic()
             }}
         >
             <div className={styles.content}>{children}</div>

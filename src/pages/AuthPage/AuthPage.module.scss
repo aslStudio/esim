@@ -27,11 +27,12 @@
 
 .title {
     font-size: 32px;
-    line-height: 22px;
+    line-height: 34px;
     font-weight: 600;
     color: var(--tg-theme-text-color);
+    text-align: center;
 
-    margin-top: 32px;
+    margin-top: 20px;
 }
 
 .description {
@@ -41,5 +42,5 @@
     color: var(--tg-theme-text-color);
     text-align: center;
 
-    margin-top: 24px;
+    margin-top: 14px;
 }

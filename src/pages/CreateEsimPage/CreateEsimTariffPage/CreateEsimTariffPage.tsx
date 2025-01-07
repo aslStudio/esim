@@ -96,6 +96,6 @@ const AvailableCountriesReflect = reflect({
 const ButtonReflect = reflect({
     view: Button,
     bind: {
-        isDisabled: createEsimModel.$data.map(state => !state.region)
+        isDisabled: createEsimModel.$data.map(state => !state.tariff)
     }
 })
