@@ -1,6 +1,6 @@
-import {useEffect} from "react"
-import {reflect} from "@effector/reflect"
+import {useCallback, useEffect} from "react"
 import {useUnit} from "effector-react"
+import {useTonConnectUI} from "@tonconnect/ui-react"
 
 import {createEsimModel} from "@/features/create/model"
 
@@ -18,11 +18,14 @@ export const CreateEsimDonePage = () => {
     const { navigate, goBack } = useProjectNavigate()
 
     const [
-        data
+        data,
+        transactionData
     ] = useUnit([
-        createEsimModel.$data
+        createEsimModel.$data,
+        createEsimModel.$transactionData
     ])
 
+    const [tonConnectUI] = useTonConnectUI()
     const { BackButton } = useTelegram()
     const { isOpen, open, close } = useModal()
     const { content } = useLanguageProvider()
@@ -33,14 +36,29 @@ export const CreateEsimDonePage = () => {
         modal
     } = content.pages.create.done
 
+    const onPay = useCallback(() => {
+        try {
+            if (transactionData) {
+                tonConnectUI.sendTransaction({
+                    validUntil: new Date(transactionData.result.valid_until).getTime(),
+                    messages: [
+                        {
+                            address: transactionData.result.tx_fill_info.receiver,
+                            amount: transactionData.result.tx_fill_info.amount,
+                            payload: transactionData.result.tx_fill_info.payload,
+                        }
+                    ]
+                })
+            }
+
+            navigate(RootPaths.MAIN)
+        } catch (e) {
+            console.log(e)
+        }
+    }, [transactionData])
+
     useEffect(() => {
         open()
-        createEsimModel.onSuccess.set(id => {
-            close()
-            navigate(
-                RootPaths.ESIM.replace(':id', `${id}`)
-            )
-        })
     }, [])
 
     useEffect(() => {
@@ -89,22 +107,16 @@ export const CreateEsimDonePage = () => {
                             .replace('__', `${data.tariff?.price} Major`)
                     }
                 </p>
-                <CreateButtonReflect>
+                <Button
+                    onClick={onPay}
+                >
                     <div className={styles['modal-button']}>
                         {modal.button}
                         <MajorIcon />
                         {data.tariff?.price}
                     </div>
-                </CreateButtonReflect>
+                </Button>
             </Modal>
         </>
     )
 }
-
-const CreateButtonReflect = reflect({
-    view: Button,
-    bind: {
-        isLoading: createEsimModel.$isPending,
-        onClick: createEsimModel.esimCreated
-    }
-})

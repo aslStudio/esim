@@ -7,14 +7,21 @@ export type GetViewerResponse = {
     username: string
     orders: {
         id: number
-
-        region: string
-        dataSize: number
-        days: number
-
+        name: string
         price: number
         paymentType: PaymentType
     }[]
+}
+
+export type GetViewerOrdersResponse = {
+    result: {
+        orders: {
+            id: number
+            package_name: string
+            guid: string
+            major_price: number
+        }[]
+    }
 }
 
 export type ViewerApi = {

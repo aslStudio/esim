@@ -15,8 +15,6 @@ export type ResponseDefault<T = null> = SuccessResponse<T> | FailureResponse
 
 export async function createRequest<T>({
     withAuth = true,
-    withPrefix = true,
-    withBaseUrl = true,
     headers,
     ...data
 }: {
@@ -24,18 +22,12 @@ export async function createRequest<T>({
     method: 'POST' | 'GET' | 'PUT' | 'DELETE',
     data?: Record<string, unknown>,
     withAuth?: boolean
-    withPrefix?: boolean
-    withBaseUrl?: boolean
     headers?: Record<string, string>
 }): Promise<ResponseDefault<T>> {
     try {
-        const token = tokenModel.getAccessToken()
+        const token = window.localStorage.getItem('JWT_TOKEN')
 
-        const url = withBaseUrl
-            ? withPrefix
-                ? `${ENV.APP_API_URL}api/${data.url}/`
-                : `${ENV.APP_API_URL}${data.url}/`
-            : data.url
+        const url = `${ENV.VITE_API_URL}/${data.url}`
 
         const response = await fetch(
             url,
@@ -46,7 +38,7 @@ export async function createRequest<T>({
                         'Content-Length': JSON.stringify(data.data).length.toString()
                     }),
                     ...(withAuth && {
-                        Authorization: `${token}`,
+                        Authorization: `Bearer ${token}`,
                     }),
                     ...(headers && {
                         ...headers

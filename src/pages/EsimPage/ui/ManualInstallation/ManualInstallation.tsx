@@ -1,6 +1,6 @@
 import React from "react"
 
-import {ESIMExpand} from "@/entities/esim/model"
+import {ESIMItem} from "@/entities/esim/model"
 
 import {PropsDefault} from "@/shared/lib"
 import {useLanguageProvider} from "@/shared/lib/providers";
@@ -10,14 +10,13 @@ import {CopyCell} from "@/shared/ui/CopyCell";
 import {clsx} from "clsx";
 
 export type ManualInstallationProps = PropsDefault<{
-    data: ESIMExpand
-    isLoading: boolean
+    data: ESIMItem | null
+    isLoading?: boolean
 }>
 
 export const ManualInstallation: React.FC<ManualInstallationProps> = ({
     className,
     data,
-    isLoading,
 }) => {
     const { content } = useLanguageProvider()
     const {
@@ -37,14 +36,14 @@ export const ManualInstallation: React.FC<ManualInstallationProps> = ({
             <CopyCell
                 className={styles.cell}
                 label={smdp}
-                value={data.smdp}
-                isLoading={isLoading}
+                value={data?.smdp ?? ''}
+                isLoading={!data || !data.smdp}
             />
             <CopyCell
                 className={styles.cell}
                 label={code}
-                value={data.code}
-                isLoading={isLoading}
+                value={data?.activationCode ?? ''}
+                isLoading={!data || !data.smdp}
             />
         </div>
     )

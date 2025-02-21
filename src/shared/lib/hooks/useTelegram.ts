@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
 export type TelegramWindow = {
-    Telegram?: {
-        WebApp?: {
+    Telegram: {
+        WebApp: {
             initData: string
             initDataUnsafe: {
                 user: {
@@ -38,6 +38,22 @@ export type TelegramWindow = {
             }
         }
     }
+}
+
+export function getInitData() {
+    if (import.meta.env.VITE_MODE === 'development') {
+        return import.meta.env.VITE_INIT_DATA
+    }
+
+    return (window as unknown as TelegramWindow).Telegram.WebApp.initData
+}
+
+export function getInitDataUnsafe() {
+    if (import.meta.env.VITE_MODE === 'development') {
+        return JSON.parse(import.meta.env.VITE_UNSAFE_DATA)
+    }
+
+    return (window as unknown as TelegramWindow).Telegram.WebApp.initDataUnsafe
 }
 
 export const useTelegram = () => {
@@ -107,6 +123,9 @@ export const useTelegram = () => {
     }, [tg.Telegram?.WebApp?.platform])
 
     return {
+        initData: getInitData(),
+        initDataUnsafe: getInitDataUnsafe(),
+
         isMobileDevice,
         BackButton: tg.Telegram?.WebApp?.BackButton,
 

@@ -1,26 +1,60 @@
-import {TimeStamp} from "@/shared/lib";
 import {ResponseDefault} from "@/shared/lib/api/createRequest.ts";
 
 export type GetEsimListResponse = {
-    id: number
-    avatar: string
-    region: string
-    dataSize: number
-    days: number
-    isHidden: boolean
-    purchaseDate: TimeStamp
-    iccid: string
-    daysLeft: number
-    dataLeft: number
-}[]
+    result: {
+        profiles: {
+            name: string
+            image: string
+            iccid: string
+            days_left: number
+            data_left: number
+            expiring_at: string
+            qr_code_url: string
+            smdp: string
+            activation_code: string
+            is_archived: boolean
+        }[]
+    }
+}
+
+export type GetNotPayedEsimResponse = {
+    result: {
+        guid: string
+        package_info: {
+            name: string
+            image: string
+            codes: string[]
+            package_code: string
+            description: string
+            duration: number
+            duration_unit: string
+            speed: string
+        },
+        major_price: number
+        created_at: string
+        valid_until: string
+        tx_fill_info: {
+            receiver: string
+            amount: string
+            payload: string
+        }
+    }
+}
 
 export type CreateEsimParams = {
-    regionId: number | string
-    tariffId: number | string
+    package_code: string
 }
 
 export type CreateEsimResponse = {
-    id: number | string
+    result: {
+        guid: string
+        valid_until: string
+        tx_fill_info: {
+            receiver: string
+            amount: string
+            payload: string
+        }
+    }
 }
 
 export type GetEsimExpandParams = {
@@ -37,6 +71,8 @@ export type GetEsimExpandResponse = {
 export type EsimApi = {
     getList: () =>
         Promise<ResponseDefault<GetEsimListResponse>>
+    getNotPayedEsim: () =>
+        Promise<ResponseDefault<GetNotPayedEsimResponse>>
     getEsimExpand: (p: GetEsimExpandParams) =>
         Promise<ResponseDefault<GetEsimExpandResponse>>
     create: (p: CreateEsimParams) =>

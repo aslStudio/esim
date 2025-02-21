@@ -4,7 +4,7 @@ export enum PaymentType {
 }
 
 export enum RegionType {
-    COUNTRY = 'country',
-    REGION = 'region',
-    GLOBAL = 'global'
+    COUNTRY = 1,
+    REGION = 2,
+    GLOBAL = 3
 }

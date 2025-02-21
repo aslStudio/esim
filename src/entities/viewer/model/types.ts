@@ -6,11 +6,7 @@ export type Viewer = {
     username: string
     orders: {
         id: number
-
-        region: string
-        dataSize: number
-        days: number
-
+        name: string
         price: number
         paymentType: PaymentType
     }[]

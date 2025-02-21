@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useMemo} from "react"
 import {clsx} from "clsx"
 import {useUnit} from "effector-react"
 
@@ -6,6 +6,8 @@ import {createEsimModel} from "@/features/create/model"
 
 import {PropsDefault} from "@/shared/lib"
 import {MajorIcon} from "@/shared/ui/MajorIcon"
+import {RegionType} from "@/shared/api/enum.ts"
+import {publicPaths} from "@/shared/assets/public.ts"
 
 import styles from './EsimTariffInfo.module.scss'
 
@@ -17,6 +19,16 @@ export const EsimTariffInfo: React.FC<PropsDefault> = ({
     ] = useUnit([
         createEsimModel.$data
     ])
+
+    const imgPath = useMemo(() => {
+        if (data.region?.type === RegionType.COUNTRY) {
+            return `https://p.qrsim.net${data.region?.avatar}`
+        }
+
+        const name = data.region?.name.toLowerCase().split(' ').join('_')
+
+        return publicPaths.regions[name as keyof typeof publicPaths.regions]
+    }, [data.region])
 
     if (!data.region || !data.tariff) {
         return null
@@ -36,7 +48,7 @@ export const EsimTariffInfo: React.FC<PropsDefault> = ({
                 </div>
                 <div className={styles.avatar}>
                     <img
-                        src={data.region?.avatar}
+                        src={imgPath}
                         alt={'avatar'}
                     />
                 </div>

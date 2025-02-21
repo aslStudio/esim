@@ -14,7 +14,6 @@ import {
 import { EsimPage } from "@/pages/EsimPage"
 
 import { CreatePaths, RootPaths } from "@/shared/lib"
-import { tokenModel } from "@/shared/model"
 import { useRouteTransitionContext } from "@/shared/lib/providers/RouteTransitionProvider"
 
 export const RouterView = () => {
@@ -110,7 +109,7 @@ export const RouterView = () => {
 const PrivateRoute: React.FC<React.PropsWithChildren> = ({
     children
 }) => {
-    const token = tokenModel.getAccessToken()
+    const token = window.localStorage.getItem('JWT_TOKEN')
 
     if (!token) {
         return (
@@ -131,7 +130,7 @@ const PrivateRoute: React.FC<React.PropsWithChildren> = ({
 const CheckIsLoginRoute: React.FC<React.PropsWithChildren> = ({
     children
 }) => {
-    const token = tokenModel.getAccessToken()
+    const token = window.localStorage.getItem('JWT_TOKEN')
 
     if (token) {
         return (
@@ -148,7 +147,7 @@ const CheckIsLoginRoute: React.FC<React.PropsWithChildren> = ({
 }
 
 const AnotherRoute = () => {
-    const token = tokenModel.getAccessToken()
+    const token = window.localStorage.getItem('JWT_TOKEN')
 
     if (token) {
         return (

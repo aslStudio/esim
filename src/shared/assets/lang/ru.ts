@@ -38,7 +38,8 @@ export const ru = {
                     'Пожалуйста, перепроверьте',
                     'выбранный тариф перед оплатой'
                 ],
-                button: 'Next step'
+                button: 'Следующий шаг',
+                buttonConnect: 'Подключите кошелек',
             },
             done: {
                 title: 'Готово!',
@@ -131,6 +132,9 @@ export const ru = {
                 iccid: 'ICCID',
                 daysLeft: 'Осталось дней',
                 dataLeft: 'Данных осталось'
+            },
+            NotPayedEsimCard: {
+                button: 'Завершите оплату eSIM'
             }
         }
     }

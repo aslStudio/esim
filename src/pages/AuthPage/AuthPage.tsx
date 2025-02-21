@@ -1,8 +1,6 @@
 import {useEffect} from "react"
 import {reflect} from "@effector/reflect"
 
-import {loginModel} from "@/features/auth/model"
-
 import {LottieAnimation} from "@/shared/ui/LottieAnimation"
 import {useLanguageProvider} from "@/shared/lib/providers"
 import {Button} from "@/shared/ui/Button"
@@ -11,6 +9,7 @@ import {useTelegram} from "@/shared/lib/hooks/useTelegram.ts"
 import {useProjectNavigate} from "@/shared/lib/hooks"
 
 import styles from './AuthPage.module.scss'
+import {authModel} from "@/shared/layouts/AuthProvider/model.ts";
 
 export const AuthPage = () => {
     const { navigate } = useProjectNavigate()
@@ -25,7 +24,7 @@ export const AuthPage = () => {
     } = content.pages.auth
 
     useEffect(() => {
-        loginModel.onSuccess.set(() => {
+        authModel.onSuccess.set(() => {
             navigate(RootPaths.MAIN)
         })
         BackButton?.hide()
@@ -56,7 +55,7 @@ export const AuthPage = () => {
 const SubmitButton = reflect({
     view: Button,
     bind: {
-        isLoading: loginModel.$isPending,
-        onClick: loginModel.loggedIn
+        isLoading: authModel.$isPending,
+        onClick: authModel.login
     }
 })

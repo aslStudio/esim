@@ -38,7 +38,8 @@ export const en = {
                     'Please double check',
                     'your tariff details before paying'
                 ],
-                button: 'Next step'
+                button: 'Next step',
+                buttonConnect: 'Connect wallet',
             },
             done: {
                 title: 'Done!',
@@ -131,6 +132,9 @@ export const en = {
                 iccid: 'ICCID',
                 daysLeft: 'Days left',
                 dataLeft: 'Data left'
+            },
+            NotPayedEsimCard: {
+                button: 'Finish the purchase of eSIM'
             }
         }
     }

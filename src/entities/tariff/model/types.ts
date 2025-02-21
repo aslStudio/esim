@@ -4,4 +4,6 @@ export type Tariff = {
     days: number
     price: number
     dollars: number
+    codes: string[]
+    package_code: string
 }

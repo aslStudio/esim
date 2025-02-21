@@ -1,6 +1,6 @@
 import React from "react"
 
-import {ESIMExpand} from "@/entities/esim/model"
+import {ESIMItem} from "@/entities/esim/model"
 
 import {PropsDefault} from "@/shared/lib"
 import {Button} from "@/shared/ui/Button";
@@ -11,8 +11,8 @@ import {useDownloadFile} from "@/shared/lib/hooks"
 import styles from './ButtonDownload.module.scss'
 
 export type ButtonDownloadProps = PropsDefault<{
-    data: ESIMExpand
-    isLoading: boolean
+    data: ESIMItem | null
+    isLoading?: boolean
 }>
 
 export const ButtonDownload: React.FC<ButtonDownloadProps> = ({
@@ -29,7 +29,9 @@ export const ButtonDownload: React.FC<ButtonDownloadProps> = ({
             className={className}
             isLoading={isLoading}
             onClick={() => {
-                downloadFile(data.qr)
+                if (data && data.qrCode) {
+                    downloadFile(data.qrCode)
+                }
             }}
         >
             <div className={styles.root}>

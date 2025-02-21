@@ -7,10 +7,15 @@ export type GetRegionParams = {
 }
 
 export type GetRegionResponse = {
-    id: number | string
-    avatar: string
-    name: string
-}[]
+    result: {
+        locations: {
+            name: string
+            image: string
+            type: RegionType,
+            codes: string[]
+        }[]
+    }
+}
 
 export type GetAvailableCountriesParams = {
     region: number | string

@@ -61,7 +61,7 @@ export const ViewerOrders: React.FC<PropsDefault> = ({
                                 styles[`row-description`]
                             )}
                         >
-                            <p>{order.region} - {order.dataSize} GB - {order.days} Days</p>
+                            <p>{order.name}</p>
                             <p>{paymentTypeMap[order.paymentType]}</p>
                         </div>
                     </div>

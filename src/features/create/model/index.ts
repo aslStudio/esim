@@ -6,11 +6,11 @@ import {Tariff, tariffListModel} from "@/entities/tariff/model";
 import {PaymentType} from "@/shared/api/enum.ts"
 import {Maybe} from "@/shared/lib"
 import {createInstanceStore} from "@/shared/lib/effector"
-import {esimApi} from "@/shared/api/esim";
+import {CreateEsimResponse, esimApi} from "@/shared/api/esim"
 
 const onSuccess = createInstanceStore<
-    number | string,
-    (v: number | string) => void
+    CreateEsimResponse,
+    (v: CreateEsimResponse) => void
 >(() => {})
 
 const createFx = createEffect(esimApi.create)
@@ -30,6 +30,7 @@ const $data = createStore<{
     tariff: null,
     paymentType: PaymentType.STARS
 })
+const $transactionData = createStore<Maybe<CreateEsimResponse>>(null)
 
 sample({
     source: $data,
@@ -63,7 +64,7 @@ sample({
 
 sample({
     clock: regionUpdated,
-    fn: region => ({ region: region.id }),
+    fn: region => ({ region }),
     target: [
         tariffListModel.fetchFx,
         availableCountriesModel.fetchFx,
@@ -79,12 +80,13 @@ sample({
 sample({
     clock: createFx.doneData,
     filter: ({ error }) => !error,
-    fn: ({ payload }) => payload!.id,
-    target: onSuccess.trigger
+    fn: ({ payload }) => payload!,
+    target: [onSuccess.trigger, $transactionData]
 })
 
 export const createEsimModel = {
     $data,
+    $transactionData,
     $isPending,
 
     regionUpdated,
@@ -101,7 +103,6 @@ function dataToCreate(data: {
     paymentType: PaymentType
 }) {
     return {
-        regionId: data.region?.id ?? '',
-        tariffId: data.tariff?.id ?? '',
+        package_code: data.tariff!.package_code,
     }
 }

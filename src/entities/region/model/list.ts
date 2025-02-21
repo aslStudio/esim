@@ -2,10 +2,11 @@ import {useEffect} from "react"
 import {createEffect, createEvent, createStore, sample} from "effector"
 import {createGate, useUnit} from "effector-react"
 
-import {regionApi} from "@/shared/api/region"
+import {GetRegionResponse, regionApi} from "@/shared/api/region"
 import {RegionType} from "@/shared/api/enum.ts";
 
 import { Region } from './types.ts'
+import {ResponseDefault} from "@/shared/lib/api/createRequest.ts";
 
 const RegionGate = createGate()
 
@@ -19,6 +20,7 @@ const $isPending = createStore(true)
 const $searchValue = createStore('')
 const $type = createStore<RegionType>(RegionType.COUNTRY)
 const $list = createStore<Region[]>([])
+const $viewList = createStore<Region[]>([])
 
 sample({
     source: {
@@ -40,8 +42,8 @@ sample({
 })
 sample({
     clock: fetchFx.doneData,
-    fn: ({ payload }) => payload ?? [],
-    target: $list,
+    fn: toDomain,
+    target: [$list, $viewList],
 })
 
 sample({
@@ -68,13 +70,10 @@ sample({
     target: fetchFx,
 })
 sample({
-    source: $type,
+    source: $list,
     clock: searchRequested,
-    fn: (type, search) => ({
-        type,
-        search,
-    }),
-    target: fetchFx,
+    fn: (list, searchValue) => list.filter(item => item.name.includes(searchValue)),
+    target: $viewList,
 })
 
 const useFetchRegion = () => {
@@ -91,10 +90,25 @@ export const regionListModel = {
     useFetchRegion,
 
     $list,
+    $viewList,
     $type,
     $searchValue,
 
     typeUpdated,
     searchUpdated,
     searchRequested,
+}
+
+function toDomain(data: ResponseDefault<GetRegionResponse>): Region[] {
+    if (data.payload) {
+        return data.payload.result.locations.map((item, key) => ({
+            id: key,
+            avatar: item.image,
+            name: item.name,
+            codes: item.codes,
+            type: item.type
+        }))
+    }
+
+    return []
 }

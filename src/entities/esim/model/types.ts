@@ -2,6 +2,7 @@ import {TimeStamp} from "@/shared/lib";
 
 export type ESIMItem = {
     id: number | string
+    name: string
     avatar: string
     region: string
     dataSize: number
@@ -11,11 +12,19 @@ export type ESIMItem = {
     iccid: string
     daysLeft: number
     dataLeft: number
+
+    qrCode: string
+    smdp: string
+    activationCode: string
 }
 
-export type ESIMExpand = {
-    id: number | string
-    qr: string
-    smdp: string
-    code: string
+export type NotPayedESIM = {
+    name: string
+    avatar: string
+    validUntil: TimeStamp
+    transactionInfo: {
+        receiver: string
+        amount: string
+        payload: string
+    }
 }

@@ -1,36 +1,16 @@
-import {createEffect, createEvent, createStore, sample} from "effector"
+import type { ESIMItem } from './types'
+import {createEvent, createStore, sample} from "effector";
 
-import {esimApi} from "@/shared/api/esim"
+const expandSelected = createEvent<ESIMItem>()
 
-import { ESIMExpand } from './types.ts'
-
-const fetchFx = createEffect(esimApi.getEsimExpand)
-
-const esimRequested = createEvent<number | string>()
-
-const $isPending = fetchFx.pending
-const $data = createStore<ESIMExpand>({
-    id: 0,
-    qr: '',
-    smdp: '',
-    code: '',
-})
+const $expand = createStore<ESIMItem | null>(null)
 
 sample({
-    clock: esimRequested,
-    fn: id => ({ id }),
-    target: fetchFx,
-})
-sample({
-    clock: fetchFx.doneData,
-    filter: ({ error }) => !error,
-    fn: ({ payload }) => payload!,
-    target: $data,
+    clock: expandSelected,
+    target: $expand
 })
 
-export const esimExpandModel = {
-    $isPending,
-    $data,
-
-    esimRequested,
+export const expandModule = {
+    $expand,
+    expandSelected,
 }

@@ -1,8 +1,7 @@
 import {useEffect} from "react"
-import {useParams} from "react-router-dom"
 import {reflect} from "@effector/reflect"
 
-import {esimExpandModel} from "@/entities/esim/model"
+import {expandModule} from "@/entities/esim/model"
 
 import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
 import {RootPaths} from "@/shared/lib"
@@ -17,16 +16,9 @@ import {
 import styles from './EsimPage.module.scss'
 
 export const EsimPage = () => {
-    const params = useParams()
     const { navigate } = useProjectNavigate()
 
     const { BackButton } = useTelegram()
-
-    useEffect(() => {
-        if (params.id) {
-            esimExpandModel.esimRequested(`${params.id}`)
-        }
-    }, [params]);
 
     useEffect(() => {
         BackButton?.show()
@@ -62,23 +54,20 @@ export const EsimPage = () => {
 const EsimQRReflect = reflect({
     view: EsimQR,
     bind: {
-        data: esimExpandModel.$data,
-        isLoading: esimExpandModel.$isPending,
+        data: expandModule.$expand,
     }
 })
 
 const ButtonDowloadReflect = reflect({
     view: ButtonDownload,
     bind: {
-        data: esimExpandModel.$data,
-        isLoading: esimExpandModel.$isPending,
+        data: expandModule.$expand,
     }
 })
 
 const ManualInstallationReflect = reflect({
     view: ManualInstallation,
     bind: {
-        data: esimExpandModel.$data,
-        isLoading: esimExpandModel.$isPending,
+        data: expandModule.$expand,
     }
 })

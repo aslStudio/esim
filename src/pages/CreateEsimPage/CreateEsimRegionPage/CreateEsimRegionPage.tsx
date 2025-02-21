@@ -76,7 +76,7 @@ export const CreateEsimRegionPage = () => {
 const ListReflect = reflect({
     view: RegionCellList,
     bind: {
-        list: regionListModel.$list,
+        list: regionListModel.$viewList,
     }
 })
 

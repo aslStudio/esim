@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useMemo} from "react"
 import {clsx} from "clsx"
 
 import {Region} from "@/entities/region/model"
@@ -8,6 +8,8 @@ import {Icon} from "@/shared/ui/Icon"
 import {useTelegram} from "@/shared/lib/hooks"
 
 import styles from './RegionCell.module.scss'
+import {RegionType} from "@/shared/api/enum.ts";
+import {publicPaths} from "@/shared/assets/public.ts";
 
 export type RegionCellProps = PropsDefault<{
     cell: Region
@@ -22,6 +24,16 @@ export const RegionCell: React.FC<RegionCellProps> = ({
     onClick
 }) => {
     const { haptic } = useTelegram()
+
+    const imgPath = useMemo(() => {
+        if (cell.type === RegionType.COUNTRY) {
+            return `https://p.qrsim.net${cell.avatar}`
+        }
+
+        const name = cell.name.toLowerCase().split(' ').join('_')
+
+        return publicPaths.regions[name as keyof typeof publicPaths.regions]
+    }, [cell])
 
     return (
         <div
@@ -38,7 +50,7 @@ export const RegionCell: React.FC<RegionCellProps> = ({
         >
             <div className={styles.avatar}>
                 <img
-                    src={cell.avatar}
+                    src={imgPath}
                     alt={`avatar`}
                 />
             </div>
