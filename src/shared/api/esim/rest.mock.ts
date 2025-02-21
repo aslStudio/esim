@@ -54,6 +54,7 @@ export const esimApi: EsimApi = {
             payload: {
                 result: {
                     guid: 'guid',
+                    valid_until: new Date().toISOString(),
                     tx_fill_info: {
                         receiver: 'receiver',
                         amount: 'amount',
@@ -82,7 +83,7 @@ function getList() {
     return Array(getRandomInt(1, 10)).fill(1).map(() => ({
         name: 'name',
         image: 'https://img51994.kanal-o.ru/img/2024-09-09/fmt_81_24_shutterstock_2141488197.jpg',
-        icc_id: '8975621486489562588',
+        iccid: '8975621486489562588',
         days_left: getRandomInt(1, 100),
         data_left: getRandomInt(1, 100),
         expiring_at: '2025-02-18T20:42:07.998Z',
