@@ -51,13 +51,14 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
                             height={232}
                         />
                         <h1 className={styles.title}>{title}</h1>
+                        <p className={styles.by}>{description[0]}</p>
                         <div className={styles.description}>
-                            {description.map(item => (
-                                <p key={item}>{item}</p>
-                            ))}
+                            <p>{description[1]}</p>
+                            <p>{description[2]}</p>
                         </div>
                     </div>
                     <Button
+                        className={styles.button}
                         isLoading={isPending}
                         onClick={login}
                     >

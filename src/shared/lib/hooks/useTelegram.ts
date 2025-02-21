@@ -11,6 +11,7 @@ export type TelegramWindow = {
             }
             expand: () => void
             ready: () => void
+            openLink: (url: string) => void
             openTelegramLink: (data: string) => void
             setHeaderColor: (color: string) => void
             requestFullscreen: () => void
@@ -136,5 +137,6 @@ export const useTelegram = () => {
         setHeaderColor,
         shareToStory,
         openFullScreen,
+        openLink: tg.Telegram.WebApp.openLink,
     }
 }

@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import {useUnit} from "effector-react"
 import {reflect} from "@effector/reflect"
 
@@ -14,6 +14,8 @@ import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
 import styles from './EsimList.module.scss'
 import {CreatePaths, RootPaths} from "@/shared/lib";
 
+let interval: ReturnType<typeof setInterval>
+
 export const EsimList = () => {
     const { navigate } = useProjectNavigate()
 
@@ -25,6 +27,13 @@ export const EsimList = () => {
     const { title, button } = content.widgets.esim.EsimList
 
     const [isShowHidden, setIsShowHidden] = useState(false)
+
+    useEffect(() => {
+        clearInterval(interval)
+        interval = setInterval(() => {
+            esimListModel.refetchNotPayedFx().then()
+        }, 10_000)
+    }, [notPayed]);
 
     return (
         <div className={styles.root}>

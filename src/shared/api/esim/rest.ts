@@ -33,5 +33,15 @@ export const esimApi: EsimApi = {
                 code: 'K2-29NKKA-XN1XCD'
             }
         }
-    }
+    },
+    getTransactionData: async ({ wallet }) =>
+        createRequest({
+            url: `orders/txFillInfo?wallet=${wallet}`,
+            method: 'GET'
+        }),
+    checkoutTransaction: async () =>
+        createRequest({
+            url: 'orders/checkout',
+            method: 'POST'
+        })
 }

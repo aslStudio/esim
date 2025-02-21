@@ -11,5 +11,6 @@ export const iconNames = [
   "eye",
   "phone-slash",
   "search",
-  "smile"
+  "smile",
+  "wallet"
 ] as const

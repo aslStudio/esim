@@ -1,4 +1,4 @@
-import {LanguageSelect, ViewerInfo, ViewerOrders} from "@/widgets/viewer"
+import {LanguageSelect, ViewerInfo, ViewerOrders, ViewerWallet} from "@/widgets/viewer"
 
 import {useLanguageProvider} from "@/shared/lib/providers"
 import {useTelegram} from "@/shared/lib/hooks/useTelegram.ts"
@@ -23,6 +23,9 @@ export const ProfilePage = () => {
         <div className={styles.root}>
             <ViewerInfo
                 isInteractive={false}
+            />
+            <ViewerWallet
+                className={styles.wallet}
             />
             <ViewerOrders
                 className={styles.orders}

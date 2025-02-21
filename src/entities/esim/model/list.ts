@@ -1,4 +1,4 @@
-import {combine, createEffect, createEvent, createStore, sample} from "effector"
+import {attach, combine, createEffect, createEvent, createStore, sample} from "effector"
 
 import {createFetch} from "@/shared/lib/effector"
 import {esimApi, GetEsimListResponse, GetNotPayedEsimResponse} from "@/shared/api/esim"
@@ -8,6 +8,9 @@ import {ResponseDefault} from "@/shared/lib/api/createRequest.ts";
 
 const [fetchFx, useFetchGate, Gate, $isPending] = createFetch(esimApi.getList)
 const fetchNotPayedFx = createEffect(esimApi.getNotPayedEsim)
+const refetchNotPayedFx = attach({
+    effect: fetchNotPayedFx,
+})
 
 const notPayedExipered = createEvent()
 
@@ -37,7 +40,7 @@ sample({
 })
 
 sample({
-    clock: fetchNotPayedFx.doneData,
+    clock: [fetchNotPayedFx.doneData, refetchNotPayedFx.doneData],
     fn: notPayedToDomain,
     target: $notPayed,
 })
@@ -57,6 +60,7 @@ export const esimListModel = {
     notPayedExipered,
 
     fetchFx,
+    refetchNotPayedFx,
     useFetchGate,
 }
 
@@ -101,7 +105,7 @@ function toDomain(data: ResponseDefault<GetEsimListResponse>): ESIMItem[] {
 }
 
 function notPayedToDomain(data: ResponseDefault<GetNotPayedEsimResponse>): NotPayedESIM | null {
-    if (data.error || !data.payload) {
+    if (data.error || !data.payload || !data.payload.result) {
         return null
     }
 
@@ -117,6 +121,6 @@ function notPayedToDomain(data: ResponseDefault<GetNotPayedEsimResponse>): NotPa
         name: data.payload.result.package_info.name,
         avatar: data.payload.result.package_info.image,
         validUntil: toTimestamp(data.payload.result.valid_until),
-        transactionInfo: data.payload.result.tx_fill_info,
+        isPayed: data.payload.result.checked,
     }
 }

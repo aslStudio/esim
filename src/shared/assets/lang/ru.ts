@@ -6,8 +6,9 @@ export const ru = {
         auth: {
             title: 'Добро пожаловать в eSIM',
             description: [
+                'by Stable App',
                 'Оставайтесь онлайн по всему миру.',
-                'Оплачивайте напрямую в Telegram'
+                'Запущено в Telegram и с Major'
             ],
             button: 'Начать'
         },
@@ -134,6 +135,7 @@ export const ru = {
                 dataLeft: 'Данных осталось'
             },
             NotPayedEsimCard: {
+                inProcess: 'Оплата в процессе',
                 button: 'Завершите оплату eSIM'
             }
         }

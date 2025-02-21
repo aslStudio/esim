@@ -1,7 +1,7 @@
 import {useEffect} from "react"
 import {reflect} from "@effector/reflect"
 
-import {expandModule} from "@/entities/esim/model"
+import {ESIMItem, expandModule} from "@/entities/esim/model"
 
 import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
 import {RootPaths} from "@/shared/lib"
@@ -14,11 +14,15 @@ import {
     BeforeUsing
 } from './ui'
 import styles from './EsimPage.module.scss'
+import {EsimCard} from "@/entities/esim/ui";
+import {useUnit} from "effector-react";
 
 export const EsimPage = () => {
     const { navigate } = useProjectNavigate()
 
     const { BackButton } = useTelegram()
+
+    const data = useUnit(expandModule.$expand)
 
     useEffect(() => {
         BackButton?.show()
@@ -30,7 +34,11 @@ export const EsimPage = () => {
     return (
         <div className={styles.root}>
             <div className={styles.wrapper}>
-                <p className={styles.title}>Installing the eSIM</p>
+                <p className={styles.title}>About eSIM</p>
+                <EsimCard
+                    className={styles['info-card']}
+                    {...data as ESIMItem}
+                />
                 <EsimQRReflect
                     className={styles.qr}
                 />

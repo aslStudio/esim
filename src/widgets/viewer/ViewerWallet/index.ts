@@ -1,0 +1,1 @@
+export { ViewerWallet } from './ViewerWallet.tsx'

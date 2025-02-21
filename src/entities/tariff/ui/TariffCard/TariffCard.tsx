@@ -43,7 +43,7 @@ export const TariffCard: React.FC<TariffCardProps> = ({
                 <div className={styles.price}>
                     <MajorIcon />
                     <p className={styles.title}>{toFormattedNumber(tariff.price)}</p>
-                    <p className={styles.description}>${toFormattedNumber(tariff.dollars)}</p>
+                    <p className={styles.description}>~${toFormattedNumber(tariff.dollars)}</p>
                 </div>
             </div>
         </Radio>

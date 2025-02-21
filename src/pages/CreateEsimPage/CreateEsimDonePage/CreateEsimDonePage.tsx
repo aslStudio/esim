@@ -1,6 +1,6 @@
 import {useCallback, useEffect} from "react"
 import {useUnit} from "effector-react"
-import {useTonConnectUI} from "@tonconnect/ui-react"
+import {useTonConnectUI, useTonWallet} from "@tonconnect/ui-react"
 
 import {createEsimModel} from "@/features/create/model"
 
@@ -13,19 +13,19 @@ import {MajorIcon} from "@/shared/ui/MajorIcon"
 import {RootPaths} from "@/shared/lib"
 
 import styles from './CreateEsimDonePage.module.scss'
+import {esimApi} from "@/shared/api/esim";
 
 export const CreateEsimDonePage = () => {
     const { navigate, goBack } = useProjectNavigate()
 
     const [
         data,
-        transactionData
     ] = useUnit([
         createEsimModel.$data,
-        createEsimModel.$transactionData
     ])
 
     const [tonConnectUI] = useTonConnectUI()
+    const wallet = useTonWallet()
     const { BackButton } = useTelegram()
     const { isOpen, open, close } = useModal()
     const { content } = useLanguageProvider()
@@ -36,26 +36,30 @@ export const CreateEsimDonePage = () => {
         modal
     } = content.pages.create.done
 
-    const onPay = useCallback(() => {
+    const onPay = useCallback(async () => {
         try {
-            if (transactionData) {
-                tonConnectUI.sendTransaction({
-                    validUntil: new Date(transactionData.result.valid_until).getTime(),
-                    messages: [
-                        {
-                            address: transactionData.result.tx_fill_info.receiver,
-                            amount: transactionData.result.tx_fill_info.amount,
-                            payload: transactionData.result.tx_fill_info.payload,
-                        }
-                    ]
-                })
+            if (wallet) {
+                const response = await esimApi.getTransactionData({ wallet: wallet.account.address })
+                if (!response.error && response.payload.result) {
+                    await tonConnectUI.sendTransaction({
+                        validUntil: Math.floor(Date.now() / 1000) + 360,
+                        messages: [
+                            {
+                                address: response.payload.result.receiver,
+                                amount: response.payload.result.amount,
+                                payload: response.payload.result.payload,
+                            }
+                        ]
+                    })
+                }
             }
 
+            await esimApi.checkoutTransaction()
             navigate(RootPaths.MAIN)
         } catch (e) {
             console.log(e)
         }
-    }, [transactionData])
+    }, [wallet])
 
     useEffect(() => {
         open()

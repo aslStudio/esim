@@ -30,7 +30,7 @@ const $data = createStore<{
     tariff: null,
     paymentType: PaymentType.STARS
 })
-const $transactionData = createStore<Maybe<CreateEsimResponse>>(null)
+// const $transactionData = createStore<Maybe<CreateEsimResponse>>(null)
 
 sample({
     source: $data,
@@ -81,12 +81,11 @@ sample({
     clock: createFx.doneData,
     filter: ({ error }) => !error,
     fn: ({ payload }) => payload!,
-    target: [onSuccess.trigger, $transactionData]
+    target: [onSuccess.trigger]
 })
 
 export const createEsimModel = {
     $data,
-    $transactionData,
     $isPending,
 
     regionUpdated,

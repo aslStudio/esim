@@ -37,11 +37,7 @@ export const esimApi: EsimApi = {
                     major_price: 3_000,
                     created_at: 'created_at',
                     valid_until: 'valid_until',
-                    tx_fill_info: {
-                        receiver: 'receiver',
-                        amount: 'amount',
-                        payload: 'payload',
-                    }
+                    checked: true,
                 }
             }
         }
@@ -75,6 +71,28 @@ export const esimApi: EsimApi = {
                 smdp: 'smdp.io',
                 code: 'K2-29NKKA-XN1XCD'
             }
+        }
+    },
+    getTransactionData: async () => {
+        await delay()
+
+        return {
+            error: false,
+            payload: {
+                result: {
+                    receiver: 'receiver',
+                    amount: 'amount',
+                    payload: 'payload'
+                }
+            }
+        }
+    },
+    checkoutTransaction: async () => {
+        await delay()
+
+        return {
+            error: false,
+            payload: null
         }
     }
 }

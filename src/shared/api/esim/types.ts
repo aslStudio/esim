@@ -33,11 +33,7 @@ export type GetNotPayedEsimResponse = {
         major_price: number
         created_at: string
         valid_until: string
-        tx_fill_info: {
-            receiver: string
-            amount: string
-            payload: string
-        }
+        checked: boolean
     }
 }
 
@@ -68,6 +64,18 @@ export type GetEsimExpandResponse = {
     code: string
 }
 
+export type GetTransactionDataParams = {
+    wallet: string
+}
+
+export type GetTransactionDataResponse = {
+    result: {
+        receiver: string
+        amount: string
+        payload: string
+    }
+}
+
 export type EsimApi = {
     getList: () =>
         Promise<ResponseDefault<GetEsimListResponse>>
@@ -77,4 +85,6 @@ export type EsimApi = {
         Promise<ResponseDefault<GetEsimExpandResponse>>
     create: (p: CreateEsimParams) =>
         Promise<ResponseDefault<CreateEsimResponse>>
+    getTransactionData: (p: GetTransactionDataParams) => Promise<ResponseDefault<GetTransactionDataResponse>>
+    checkoutTransaction: () => Promise<ResponseDefault<null>>
 }

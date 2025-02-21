@@ -22,9 +22,5 @@ export type NotPayedESIM = {
     name: string
     avatar: string
     validUntil: TimeStamp
-    transactionInfo: {
-        receiver: string
-        amount: string
-        payload: string
-    }
+    isPayed: boolean
 }

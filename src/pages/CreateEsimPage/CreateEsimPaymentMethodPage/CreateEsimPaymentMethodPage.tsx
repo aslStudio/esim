@@ -1,5 +1,5 @@
 import {useCallback, useEffect} from "react"
-import {useTonAddress, useTonConnectUI} from "@tonconnect/ui-react"
+import {useTonConnectUI, useTonWallet} from "@tonconnect/ui-react"
 import {useUnit} from "effector-react"
 
 import {createEsimModel} from "@/features/create/model"
@@ -15,7 +15,7 @@ import styles from './CreateEsimPaymentMethodPage.module.scss'
 export const CreateEsimPaymentMethodPage = () => {
     const { goBack, navigate } = useProjectNavigate()
 
-    const address = useTonAddress()
+    const wallet = useTonWallet()
     const [tonConnectUI] = useTonConnectUI();
     const { BackButton } = useTelegram()
     const { content } = useLanguageProvider()
@@ -24,12 +24,13 @@ export const CreateEsimPaymentMethodPage = () => {
     const [isPending] = useUnit([createEsimModel.$isPending])
 
     const onClick = useCallback(async () => {
-        if (address) {
+        if (wallet) {
             createEsimModel.esimCreated()
         } else {
+            // await tonConnectUI.disconnect()
             await tonConnectUI.openModal()
         }
-    }, [address, navigate, tonConnectUI])
+    }, [tonConnectUI, wallet])
 
     useEffect(() => {
         BackButton?.show()
@@ -60,7 +61,7 @@ export const CreateEsimPaymentMethodPage = () => {
                     isLoading={isPending}
                     onClick={onClick}
                 >
-                    {address ? button : buttonConnect}
+                    {(tonConnectUI.connected && tonConnectUI.wallet && wallet) ? button : buttonConnect}
                 </Button>
             </div>
         </div>

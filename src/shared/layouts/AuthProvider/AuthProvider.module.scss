@@ -5,7 +5,8 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 
     width: 100vw;
     height: 100vh;
@@ -35,6 +36,14 @@
     margin-top: 20px;
 }
 
+.by {
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--tg-theme-text-color);
+    text-align: center;
+}
+
 .description {
     font-size: 20px;
     line-height: 22px;
@@ -43,4 +52,11 @@
     text-align: center;
 
     margin-top: 14px;
+}
+
+.button {
+    position: fixed;
+    width: calc(100% - 32px);
+    left: 16px;
+    bottom: calc(var(--safe-area-inset-bottom, 0px) + 32px);
 }

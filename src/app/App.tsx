@@ -24,7 +24,7 @@ function App() {
 	return (
 		<AuthProvider>
 			<TonConnectUIProvider
-				manifestUrl={'https://gist.github.com/alexcraviotto/b5d974bc120c3b46a0d047ba79cb4874#file-tonconnect-manifest-json'}
+				manifestUrl={'https://gist.githubusercontent.com/alexcraviotto/b5d974bc120c3b46a0d047ba79cb4874/raw/2b04202d388d9547173b56c6ef27734edba18b29/tonconnect-manifest.json'}
 				actionsConfiguration={{
 					twaReturnUrl: 'https://t.me/tow_bot'
 				}}
