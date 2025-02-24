@@ -20,6 +20,7 @@ export const MainPage = () => {
     const { navigate } = useProjectNavigate()
 
     const isLoading = useUnit(esimListModel.$isPending)
+    const notPayed = useUnit(esimListModel.$notPayed)
 
     const { button } = content.pages.main
 
@@ -36,7 +37,7 @@ export const MainPage = () => {
             <TransitionFade
                 className={styles.button}
             >
-                {!isLoading && (
+                {!isLoading && !notPayed && (
                     <Button
                         onClick={() => {
                             navigate(

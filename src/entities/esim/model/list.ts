@@ -7,6 +7,7 @@ import {ESIMItem, NotPayedESIM} from './types.ts'
 import {ResponseDefault} from "@/shared/lib/api/createRequest.ts";
 
 const [fetchFx, useFetchGate, Gate, $isPending] = createFetch(esimApi.getList)
+const refetchFx = createEffect(esimApi.getList)
 const fetchNotPayedFx = createEffect(esimApi.getNotPayedEsim)
 const refetchNotPayedFx = attach({
     effect: fetchNotPayedFx,
@@ -28,7 +29,7 @@ sample({
 })
 
 sample({
-    clock: fetchFx.doneData,
+    clock: [fetchFx.doneData, refetchFx.doneData],
     filter: ({ error }) => !error,
     fn: toDomain,
     target: $data,
@@ -43,6 +44,11 @@ sample({
     clock: [fetchNotPayedFx.doneData, refetchNotPayedFx.doneData],
     fn: notPayedToDomain,
     target: $notPayed,
+})
+
+sample({
+    clock: refetchNotPayedFx,
+    target: refetchFx,
 })
 
 sample({

@@ -6,7 +6,6 @@ import {PropsDefault} from "@/shared/lib"
 import {Button} from "@/shared/ui/Button";
 import {Icon} from "@/shared/ui/Icon"
 import {useLanguageProvider} from "@/shared/lib/providers"
-import {useTelegram} from "@/shared/lib/hooks"
 
 import styles from './ButtonDownload.module.scss'
 
@@ -23,15 +22,13 @@ export const ButtonDownload: React.FC<ButtonDownloadProps> = ({
     const { content } = useLanguageProvider()
     const { button } = content.pages.expand
 
-    const { openLink } = useTelegram()
-
     return (
         <Button
             className={className}
             isLoading={isLoading}
             onClick={() => {
                 if (data) {
-                    openLink(`esim://install?activationCode=${data.activationCode}`)
+                    window.open(`esim://install?activationCode=${data.activationCode}`)
                 }
             }}
         >

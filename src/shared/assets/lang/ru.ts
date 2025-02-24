@@ -8,7 +8,7 @@ export const ru = {
             description: [
                 'by Stable App',
                 'Оставайтесь онлайн по всему миру.',
-                'Запущено в Telegram и с Major'
+                'Запущено в Telegram и с Major!'
             ],
             button: 'Начать'
         },

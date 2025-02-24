@@ -8,7 +8,7 @@ export const en = {
             description: [
                 'by Stable App',
                 'Stay connected around the world.',
-                'Launch on Telegram and with Major'
+                'Launch on Telegram and with Major!'
             ],
             button: 'Start'
         },

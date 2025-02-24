@@ -38,6 +38,7 @@ sample({
     fn: (data, region) => ({
         ...data,
         region,
+        tariff: null,
     }),
     target: $data,
 })

@@ -1,6 +1,6 @@
 import {useEffect} from "react"
 import {createEffect, createEvent, createStore, sample} from "effector"
-import {createGate, useUnit} from "effector-react"
+import {useUnit} from "effector-react"
 
 import {GetRegionResponse, regionApi} from "@/shared/api/region"
 import {RegionType} from "@/shared/api/enum.ts";
@@ -8,10 +8,9 @@ import {RegionType} from "@/shared/api/enum.ts";
 import { Region } from './types.ts'
 import {ResponseDefault} from "@/shared/lib/api/createRequest.ts";
 
-const RegionGate = createGate()
-
 const fetchFx = createEffect(regionApi.getList)
 
+const gateOpened = createEvent()
 const searchRequested = createEvent<string>()
 const searchUpdated = createEvent<string>()
 const typeUpdated = createEvent<RegionType>()
@@ -27,7 +26,7 @@ sample({
         search: $searchValue,
         type: $type,
     },
-    clock: RegionGate.open,
+    clock: gateOpened,
     target: fetchFx,
 })
 sample({
@@ -78,7 +77,7 @@ sample({
 
 const useFetchRegion = () => {
     useEffect(() => {
-        RegionGate.open()
+        gateOpened()
     }, []);
 
     return {

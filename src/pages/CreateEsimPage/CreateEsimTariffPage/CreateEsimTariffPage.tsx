@@ -6,7 +6,6 @@ import {createEsimModel} from "@/features/create/model"
 
 import {tariffListModel} from "@/entities/tariff/model"
 import {TariffCardList, TariffCardListSkeleton} from "@/entities/tariff/ui"
-import {availableCountriesModel} from "@/entities/region/model"
 
 import {useProjectNavigate, useTelegram} from "@/shared/lib/hooks"
 import {useLanguageProvider} from "@/shared/lib/providers"
@@ -24,10 +23,10 @@ export const CreateEsimTariffPage = () => {
 
     const [
         isPending,
-        count,
+        value,
     ] = useUnit([
         tariffListModel.$isPending,
-        availableCountriesModel.$count,
+        createEsimModel.$data,
     ])
 
     const { BackButton } = useTelegram()
@@ -55,10 +54,13 @@ export const CreateEsimTariffPage = () => {
                         <TariffListReflect
                             key={'Content'}
                         />
-                        <AvailableCountriesReflect
-                            title={`${availableTitle}: ${count}`}
+                        <CardCollapse
+                            title={`${availableTitle}: ${value.tariff?.codes.length ?? 0}`}
                             size={'m'}
-                        />
+                            isLoading={!value.tariff}
+                        >
+                            {value.tariff?.codes.join(', ')}
+                        </CardCollapse>
                         <div className={styles['no-phone']}>
                             <Icon
                                 name={'phone-slash'}
@@ -97,13 +99,13 @@ const TariffListReflect = reflect({
     }
 })
 
-const AvailableCountriesReflect = reflect({
-    view: CardCollapse,
-    bind: {
-        isLoading: availableCountriesModel.$isPending,
-        children: availableCountriesModel.$countriesString,
-    }
-})
+// const AvailableCountriesReflect = reflect({
+//     view: CardCollapse,
+//     bind: {
+//         isLoading: availableCountriesModel.$isPending,
+//         children: availableCountriesModel.$countriesString,
+//     }
+// })
 
 const ButtonReflect = reflect({
     view: Button,
